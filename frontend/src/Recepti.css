@@ -1,0 +1,145 @@
+/* Recepti.css */
+
+/* --- Stilovi za pretragu --- */
+.search-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.search-bar input {
+  max-width: 320px;
+  width: 100%;
+  border: 1.8px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  color: var(--text);
+  background-color: var(--bg);
+  transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+  border-color: var(--button-bg);
+  outline: none;
+  box-shadow: 0 0 5px var(--button-bg);
+}
+
+/* --- Grid za recept kartice --- */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 recepta po redu */
+  gap: 24px;
+}
+
+/* Responsive - 2 kartice u redu na tabletima */
+@media (max-width: 900px) {
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive - 1 kartica u redu na mobilnim */
+@media (max-width: 500px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Kartice iste veličine i razmak */
+.recipe-card {
+  background-color: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  min-height: 460px; /* ukupna visina kartice, prilagodi po potrebi */
+  box-sizing: border-box;
+  padding: 12px;
+}
+
+.recipe-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+}
+
+/* Slika kartice */
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* Sadržaj unutar kartice */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* da popuni prostor između slike i dugmeta */
+}
+
+/* Naziv recepta sa fiksnom visinom */
+.card-content h4 {
+  margin: 0 0 12px 0;
+  font-size: 1.2rem;
+  color: var(--text);
+  min-height: 48px; /* fiksna visina za naziv (oko 2 reda teksta), prilagodi po potrebi */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* ograničava na 2 reda */
+  -webkit-box-orient: vertical;
+  line-clamp: 2; /* dodato za kompatibilnost */
+  box-orient: vertical; /* dodato za kompatibilnost */
+}
+
+.card-content p {
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+  color: var(--text);
+  min-height: 60px; /* fiksna visina, recimo oko 4 reda, prilagodi */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* ograničava na 4 reda */
+  -webkit-box-orient: vertical;
+  line-clamp: 4; /* dodato za kompatibilnost */
+  box-orient: vertical; /* dodato za kompatibilnost */
+  white-space: normal;
+}
+
+
+/* Dugme da stoji na dnu kartice */
+.show-more-btn {
+  margin-top: auto; /* guranje na dno */
+  padding: 8px 14px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1.5px solid var(--button-bg);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+}
+
+.show-more-btn:hover {
+  background-color: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  transform: scale(1.05);
+}
+
+/* React Slick slide wrapper */
+.slick-slide > div {
+  height: 100%; /* da wrapper zauzme celu visinu kartice */
+  padding: 0 8px; /* mali razmak sa leve i desne strane, ukupno 16px između kartica */
+  box-sizing: border-box;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "recepti-chatbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.4",
+    "react-icons": "^5.5.0",
+    "react-slick": "^0.30.3",
+    "slick-carousel": "^1.8.1"
+  }
+}

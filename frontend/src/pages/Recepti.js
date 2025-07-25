@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
-import { PrevArrow, NextArrow } from './components/CustomArrows'; // Putanja do strelica
-import { Link } from 'react-router-dom';  // Dodato
-import './Recepti.css';
+import { PrevArrow, NextArrow } from '../components/CustomArrows';
+import { Link, useParams } from 'react-router-dom';
+import '../styles/Recepti.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Recepti = () => {
+  const { kategorija } = useParams();
   const [recepti, setRecepti] = useState([]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/recepti')
+    let url = 'http://localhost:5000/api/recepti';
+    if (kategorija) {
+      url += `?kategorija=${kategorija}`;
+    }
+
+    axios.get(url)
       .then(res => setRecepti(res.data))
       .catch(err => console.error(err));
-  }, []);
+  }, [kategorija]);
 
-  // filtriraj po nazivu
   const filtriraniRecepti = recepti.filter(r =>
     r.naziv.toLowerCase().includes(filter.toLowerCase())
   );
@@ -59,13 +64,9 @@ const Recepti = () => {
           {filtriraniRecepti.map(recept => (
             <div key={recept._id} className="recipe-card">
               {recept.slika ? (
-                <img
-                  src={recept.slika}
-                  alt={recept.naziv}
-                  className="card-img"
-                />
+                <img src={recept.slika} alt={recept.naziv} className="card-img" />
               ) : (
-                <div className="card-img-placeholder">Nema slike</div> // Opcionalno
+                <div className="card-img-placeholder">Nema slike</div>
               )}
               <div className="card-content">
                 <h4>{recept.naziv}</h4>

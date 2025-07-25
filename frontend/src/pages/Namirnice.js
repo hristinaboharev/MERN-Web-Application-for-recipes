@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../styles/Namirnice.css';
 
 const Namirnice = () => {
   const [unos, setUnos] = useState('');
@@ -16,9 +17,9 @@ const Namirnice = () => {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+    <div className="namirnice-container">
       <h2>Koje namirnice imaš?</h2>
-      <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+      <div className="namirnice-input-group">
         <input
           type="text"
           value={unos}
@@ -31,21 +32,23 @@ const Namirnice = () => {
         </button>
       </div>
 
-      <div style={{ marginTop: '30px' }}>
+      <div className="rezultati-container">
         {rezultati.length ? (
           <>
             <h4>Recepti koji sadrže "{unos}":</h4>
             {rezultati.map(r => (
-              <div key={r._id} className="card mb-3 p-3" style={{ background: '#FFF8F0' }}>
-                <h5>{r.naziv}</h5>
-                <p><strong>Sastojci:</strong> {r.sastojci.join(', ')}</p>
-                <Link
-                  to={`/recepti/${r._id}`}
-                  className="btn dugme-plavo"
-                >
-                  Prikaži više
-                </Link>
-              </div>
+              <Link to={`/recepti/${r._id}`} key={r._id} className="rezultat-kartica">
+                {r.slika ? (
+                  <img src={r.slika} alt={r.naziv} className="kartica-slika" />
+                ) : (
+                  <div className="kartica-slika-placeholder">Nema slike</div>
+                )}
+                <div className="kartica-sadrzaj">
+                  <h5>{r.naziv}</h5>
+                  <p><strong>Sastojci:</strong> {r.sastojci.join(', ')}</p>
+                </div>
+              </Link>  
+              
             ))}
           </>
         ) : (

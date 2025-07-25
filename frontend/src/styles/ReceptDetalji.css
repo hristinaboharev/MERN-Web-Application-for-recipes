@@ -79,7 +79,7 @@ ul.sastojci-lista li {
 
 .recept-naslov {
   text-align: center;
-  margin-bottom: 1.5rem; /* možeš prilagoditi marginu po potrebi */
+  margin-bottom: 1.5rem;
   font-weight: 700;
   font-size: 2rem;
   color: var(--text);

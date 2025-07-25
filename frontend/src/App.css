@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -11,31 +11,9 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 
 /*  */
@@ -64,6 +42,8 @@
   --button-text: #ffffff;
   --button-hover-bg: #124E66;
   --button-hover-text: #ffffff;
+
+  
 }
 
 
@@ -76,61 +56,7 @@ body {
   /* transition: background-color 0.3s ease, color 0.3s ease; */
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 24px;
-  background-color: var(--nav-bg);
-  color: var(--button-text);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  font-weight: 600;
-  font-size: 1.3rem;
-}
 
-nav {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* hamburger */
-.hamburger-btn {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--button-text);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.hamburger-btn:hover {
-  transform: scale(1.2);
-}
-
-.header-auth-links a,
-.header-loggedin span {
-  margin-right: 12px;
-  font-weight: 600;
-  color: var(--button-text);
-}
-
-.header-auth-links a {
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  padding: 6px 14px;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.header-auth-links a:hover {
-  background-color: var(--button-hover-bg);
-  color: var(--button-hover-text);
-}
 
 .logout-btn {
   cursor: pointer;

@@ -1,0 +1,142 @@
+.namirnice-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.namirnice-input-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-control {
+  flex-grow: 1;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1.8px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  background-color: var(--bg);
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--button-bg);
+  outline: none;
+  box-shadow: 0 0 6px var(--button-bg);
+}
+
+.btn {
+  cursor: pointer;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: none;
+}
+
+.dugme-plavo {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+}
+
+.dugme-plavo:hover {
+  background-color: var(--button-hover-bg);
+  color: var(--button-hover-text);
+}
+
+/* Kartica recepta */
+.rezultat-kartica {
+
+  text-decoration: none;
+  display: flex;
+  gap: 20px;
+  background-color: var(--bg);
+  color: var(--text);
+
+  border-radius: 16px;
+  padding: 15px 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+  
+}
+
+.rezultat-kartica:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.kartica-slika {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.kartica-slika-placeholder {
+  width: 140px;
+  height: 100px;
+  background-color: var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--button-text);
+  font-weight: 600;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.kartica-sadrzaj {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.kartica-sadrzaj h5 {
+  margin: 0 0 8px 0;
+  color: var(--text);
+  font-size: 1.3rem;
+}
+
+.kartica-sadrzaj p {
+  margin: 0 0 12px 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+/* Dugme Prikaži više */
+
+
+.prikazi-vise-btn {
+  background-color: transparent;
+  border: 2px solid var(--button-bg);
+  color: var(--button-bg);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 12px;
+
+align-self: flex-end; /* pomera na desnu stranu u flex kontejneru */
+  margin-top: auto; /* guranje na dno sadržaja */
+}
+
+.prikazi-vise-btn:hover {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  box-shadow: 0 0 10px var(--button-bg);
+  transform: scale(1.05);
+  
+}
+

@@ -5,12 +5,14 @@ import Recepti from './pages/Recepti';
 import ReceptDetalji from './pages/ReceptDetalji';
 import ReceptiKategorija from './pages/ReceptiKategorija'; 
 import Namirnice from './pages/Namirnice';
+import Favorites from './pages/Favorites';
 import Login from './Login';
 import Signup from './Signup';
 import Header from './components/Header';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import './App.css';
 
+import { SavedProvider } from './components/SavedContext';  // obavezno importuj Provider
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -45,28 +47,38 @@ function App() {
   };
 
   return (
-    <Router>
-      <Header token={token} username={username} onLogout={handleLogout} />
-      
-      <div className="theme-toggle-container">
-        <button className="theme-toggle-btn" onClick={toggleTheme}>
-          {theme === 'light' ? '🌙' : '☀️'}
-        </button>
-      </div>
-      
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Recepti />} />
-          <Route path="/namirnice" element={<Namirnice />} />
-          <Route path="/recepti/kategorija/:kategorija" element={<ReceptiKategorija />} />
-          <Route path="/recepti/:id" element={<ReceptDetalji />} />
-          <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />} />
-          <Route path="/signup" element={token ? <Navigate to="/" /> : <Signup />} />
-          {/* opcionalno: ruta za 404 */}
-          <Route path="*" element={<h2>Stranica nije pronađena</h2>} />
-        </Routes>
-      </main>
-    </Router>
+    <SavedProvider>
+      <Router>
+        <Header token={token} username={username} onLogout={handleLogout} />
+        
+        <div className="theme-toggle-container">
+          <button className="theme-toggle-btn" onClick={toggleTheme}>
+            {theme === 'light' ? (
+              <img src="/images/moon.png" alt="Dark mode" className="theme-icon" />
+            ) : (
+              <img src="/images/sun.png" alt="Light mode" className="theme-icon" />
+            )}
+          </button>
+        </div>
+
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Recepti />} />
+            <Route path="/namirnice" element={<Namirnice />} />
+            <Route path="/recepti/kategorija/:kategorija" element={<ReceptiKategorija />} />
+            <Route path="/recepti/:id" element={<ReceptDetalji />} />
+            
+            {/* FAVORITES */}
+            <Route path="/omiljeno" element={token ? <Favorites /> : <Navigate to="/login" />} />
+
+            <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />} />
+            <Route path="/signup" element={token ? <Navigate to="/" /> : <Signup />} />
+            {/* opcionalno: ruta za 404 */}
+            <Route path="*" element={<h2>Stranica nije pronađena</h2>} />
+          </Routes>
+        </main>
+      </Router>
+    </SavedProvider>
   );
 }
 

@@ -13,10 +13,6 @@
   }
 } */
 
-
-
-
-/*  */
 /* --- Tematske varijable --- */
 :root[data-theme='light'] {
   --bg: #f7f7f7;
@@ -50,13 +46,17 @@
 /* --- Globalni stilovi --- */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "TikTok Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "wdth" 100;
   background-color: var(--bg);
   color: var(--text);
   /* transition: background-color 0.3s ease, color 0.3s ease; */
 }
-
-
 
 .logout-btn {
   cursor: pointer;
@@ -99,6 +99,14 @@ body {
   background-color: var(--button-text);
   color: var(--button-bg);
 }
+
+.theme-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
 
 .layout-container {
   display: flex;

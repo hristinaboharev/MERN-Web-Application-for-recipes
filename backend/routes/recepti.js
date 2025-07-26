@@ -41,5 +41,20 @@ router.get('/:id', async (req, res) => {
 });
 
 
+// POST više recepata po ID-jevima (za sačuvane)
+router.post('/rezervisi-po-id', async (req, res) => {
+  const { ids } = req.body;
+  try {
+    if (!ids || !Array.isArray(ids)) {
+      return res.status(400).json({ message: 'Niste poslali ispravnu listu ID-jeva.' });
+    }
+    const recepti = await Recept.find({ _id: { $in: ids } });
+    res.json(recepti);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Greška prilikom učitavanja sačuvanih recepata.' });
+  }
+});
+
 
 module.exports = router;

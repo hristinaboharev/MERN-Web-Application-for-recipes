@@ -30,6 +30,8 @@ const Header = ({ token, username, onLogout }) => {
       <div className="auth-links">
         {token && username ? (
           <>
+
+            <Link to="/omiljeno" className='omiljeno-link'> Omiljeno</Link>
             <span>Dobrodošao/la, <strong>{username}</strong></span>
             <button className="logout-btn" onClick={onLogout}>Logout</button>
           </>

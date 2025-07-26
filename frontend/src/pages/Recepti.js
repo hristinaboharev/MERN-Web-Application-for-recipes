@@ -6,11 +6,19 @@ import { Link, useParams } from 'react-router-dom';
 import '../styles/Recepti.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { FaRegHeart, FaHeart } from "react-icons/fa";
+
+
+import { useContext } from 'react';
+import { SavedContext } from '../components/SavedContext'; //funkcionalnost za cuvanje stanja
 
 const Recepti = () => {
   const { kategorija } = useParams();
   const [recepti, setRecepti] = useState([]);
   const [filter, setFilter] = useState('');
+
+  const { saved, toggleSave } = useContext(SavedContext);
+
 
   useEffect(() => {
     let url = 'http://localhost:5000/api/recepti';
@@ -70,6 +78,14 @@ const Recepti = () => {
               )}
               <div className="card-content">
                 <h4>{recept.naziv}</h4>
+                <button
+                  onClick={() => toggleSave(recept._id)}
+                  className="save-heart-btn"
+                >
+                  {saved.includes(recept._id) ? <FaHeart /> : <FaRegHeart />}
+                </button>
+
+
                 <p><strong>⏱ Vreme:</strong> {recept.vreme}</p>
                 <Link to={`/recepti/${recept._id}`} className="show-more-btn">
                   Prikaži više

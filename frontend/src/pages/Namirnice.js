@@ -32,7 +32,7 @@ const Namirnice = () => {
         </button>
       </div>
 
-      <div className="rezultati-container">
+      <div style={{ marginTop: '30px' }}>
         {rezultati.length ? (
           <>
             <h4>Recepti koji sadrže "{unos}":</h4>
@@ -47,8 +47,7 @@ const Namirnice = () => {
                   <h5>{r.naziv}</h5>
                   <p><strong>Sastojci:</strong> {r.sastojci.join(', ')}</p>
                 </div>
-              </Link>  
-              
+              </Link>
             ))}
           </>
         ) : (

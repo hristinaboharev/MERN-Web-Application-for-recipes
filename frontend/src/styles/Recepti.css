@@ -57,7 +57,7 @@
   overflow: hidden;
   transition: all 0.3s ease;
 
-  min-height: 460px; /* ukupna visina kartice, prilagodi po potrebi */
+  min-height: 300px; /* ukupna visina kartice, prilagodi po potrebi */
   box-sizing: border-box;
   padding: 12px;
 }
@@ -142,3 +142,28 @@
   padding: 0 8px; /* mali razmak sa leve i desne strane, ukupno 16px između kartica */
   box-sizing: border-box;
 }
+
+.save-heart-btn {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-heart-btn svg {
+  color: #e74c3c; /* crveno srce */
+}
+
+.save-heart-btn:hover,
+.save-heart-btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+

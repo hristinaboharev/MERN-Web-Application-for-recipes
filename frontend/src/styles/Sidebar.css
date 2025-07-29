@@ -1,0 +1,164 @@
+/* Generalni stil sidebar-a */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22vw;
+  height: 100vh;
+  background-color: var(--sidebar-bg, #748D92);
+  color: var(--text-color, white);
+  box-sizing: border-box;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+/* Logo na vrhu */
+.logo {
+  font-size: 3rem;
+  font-weight: 700;
+  /* color: var(--text-color, white); */
+  font-family: 'Dancing Script', cursive;
+  user-select: none;
+  margin-bottom: 1rem;
+}
+
+/* Dugme za promenu teme */
+.theme-toggle {
+  background: transparent;
+  border: none; /* bez bordera */
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  color: inherit; /* boja zavisi od teme na body/html */
+}
+
+/* Kad je tema light, prikazujemo mesec u tamnoj boji */
+[data-theme="light"] .theme-toggle {
+  color: #333333; /* tamna siva za mesec */
+}
+
+/* Kad je tema dark, prikazujemo sunce u žutoj/svetloj boji */
+[data-theme="dark"] .theme-toggle {
+  color: #FFD700; /* zlatno žuta za sunce */
+}
+
+/* Opcionalno, hover efekat */
+.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+
+/* Lista linkova */
+.sidebar-nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.sidebar-nav ul > li {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* Glavni linkovi */
+.sidebar-nav a,
+.parent-link {
+  color: var(--text-color, white);
+  text-decoration: none;
+  display: block;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Svetliji hover */
+.sidebar-nav a:hover,
+.parent-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-color, white);
+}
+
+/* Podmeni - sakriven po defaultu, sa animacijom */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  list-style: none;
+  padding-left: 15px;
+  margin-top: 0.4rem;
+  background-color: var(--sidebar-bg, #748D92);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: max-height 0.4s ease-in-out;
+}
+
+.has-submenu:hover > .submenu {
+  max-height: 300px;
+}
+
+/* Stavke u podmeniju */
+.submenu li {
+  margin-bottom: 0.5rem;
+}
+
+/* Linkovi u podmeniju */
+.submenu li a {
+  padding: 6px 20px;
+  display: block;
+  color: var(--text-color, white);
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.submenu li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Sekcija za login/logout na dnu */
+.auth-links {
+  margin-top: auto;
+  border: none;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-links a,
+.auth-links button {
+  /* color: white; */
+  background: transparent;
+  /* border: 1.5px solid white; */
+  border-radius: 8px;
+  padding: 8px 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  /* transition: background-color 0.3s ease; */
+}
+
+
+/* Logout dugme */
+.logout-btn {
+  background-color: transparent;
+  border: 1.5px solid white;
+}
+
+.logout-btn:hover {
+  background-color: white;
+  color: #124E66;
+}

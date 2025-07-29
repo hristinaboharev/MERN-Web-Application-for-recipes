@@ -3,16 +3,18 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 import Recepti from './pages/Recepti';
 import ReceptDetalji from './pages/ReceptDetalji';
-import ReceptiKategorija from './pages/ReceptiKategorija'; 
+import ReceptiKategorija from './pages/ReceptiKategorija';
 import Namirnice from './pages/Namirnice';
 import Favorites from './pages/Favorites';
 import Login from './Login';
 import Signup from './Signup';
-import Header from './components/Header';
+
+import Layout from './components/Layout'; // NOVA komponenta
+
 import { jwtDecode } from 'jwt-decode';
 import './App.css';
 
-import { SavedProvider } from './components/SavedContext';  // obavezno importuj Provider
+import { SavedProvider } from './components/SavedContext';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -49,34 +51,33 @@ function App() {
   return (
     <SavedProvider>
       <Router>
-        <Header token={token} username={username} onLogout={handleLogout} />
-        
-        <div className="theme-toggle-container">
-          <button className="theme-toggle-btn" onClick={toggleTheme}>
-            {theme === 'light' ? (
-              <img src="/images/moon.png" alt="Dark mode" className="theme-icon" />
-            ) : (
-              <img src="/images/sun.png" alt="Light mode" className="theme-icon" />
-            )}
-          </button>
-        </div>
+        <Routes>
+          {/* Layout sa sidebarom za sve rute */}
+          <Route
+            path="/"
+            element={
+              <Layout
+                token={token}
+                username={username}
+                onLogout={handleLogout}
+                toggleTheme={toggleTheme}
+                theme={theme}
+              />
+            }
+          >
+            <Route index element={<Recepti />} />
+            <Route path="namirnice" element={<Namirnice />} />
+            <Route path="recepti/kategorija/:kategorija" element={<ReceptiKategorija />} />
+            <Route path="recepti/:id" element={<ReceptDetalji />} />
+            <Route path="omiljeno" element={token ? <Favorites /> : <Navigate to="/login" />} />
+          </Route>
 
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Recepti />} />
-            <Route path="/namirnice" element={<Namirnice />} />
-            <Route path="/recepti/kategorija/:kategorija" element={<ReceptiKategorija />} />
-            <Route path="/recepti/:id" element={<ReceptDetalji />} />
-            
-            {/* FAVORITES */}
-            <Route path="/omiljeno" element={token ? <Favorites /> : <Navigate to="/login" />} />
+          {/* Login/signup bez layout-a */}
+          <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />} />
+          <Route path="/signup" element={token ? <Navigate to="/" /> : <Signup />} />
 
-            <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />} />
-            <Route path="/signup" element={token ? <Navigate to="/" /> : <Signup />} />
-            {/* opcionalno: ruta za 404 */}
-            <Route path="*" element={<h2>Stranica nije pronađena</h2>} />
-          </Routes>
-        </main>
+          <Route path="*" element={<h2>Stranica nije pronađena</h2>} />
+        </Routes>
       </Router>
     </SavedProvider>
   );

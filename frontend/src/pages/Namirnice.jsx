@@ -17,7 +17,12 @@ const Namirnice = () => {
   };
 
   return (
-    <div className="namirnice-container">
+    <div className="namirnice-container"   style={{
+    backgroundImage: "url('/images/background.jpg')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '100vh',}}>
       <h2>Koje namirnice imaš?</h2>
       <div className="namirnice-input-group">
         <input

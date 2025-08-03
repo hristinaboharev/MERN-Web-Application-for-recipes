@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Recipe = require('../models/Recipe');
+const User = require('../models/User'); 
 
 // Svi recepti sa username-om
 router.get('/', async (req, res) => {
@@ -28,7 +29,15 @@ router.get('/pretraga', async (req, res) => {
 });
 
 
-
+//  GET recepti za jednog korisnika po ID-ju (npr. za UserProfile)
+router.get('/korisnik/:userId', async (req, res) => {
+  try {
+    const recepti = await Recipe.find({ user: req.params.userId }).populate('user', 'username');
+    res.json(recepti);
+  } catch (err) {
+    res.status(500).json({ message: 'Greška prilikom dohvatanja recepata korisnika.' });
+  }
+});
 
 // Jedan recept po ID sa populacijom user-a (username)
 router.get('/:id', async (req, res) => {

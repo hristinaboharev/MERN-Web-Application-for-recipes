@@ -113,7 +113,7 @@ body {
 
 .main-content {
   margin-left: 18vw; /* Isto koliko i sidebar */
-  padding: 30px 40px;
+  /* padding: 30px 40px; */
   background-color: var(--bg);
   color: var(--text);
   transition: all 0.3s ease;

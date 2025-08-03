@@ -31,7 +31,9 @@ const ReceptiKategorija = () => {
   return (
     <div className="container py-4">
       <h2>Kategorija: {kategorija}</h2>
-      {recepti.length > 0 ? (
+      {loading ? (
+        <div className="loading-spinner"></div>
+      ) : recepti.length > 0 ? (
         <div className="recipe-grid">
           {recepti.map(recept => (
             <div key={recept._id} className="recipe-card">

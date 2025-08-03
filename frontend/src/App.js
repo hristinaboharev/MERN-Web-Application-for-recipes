@@ -9,6 +9,7 @@ import ReceptDetalji from './pages/ReceptDetalji';
 import ReceptiKategorija from './pages/ReceptiKategorija';
 import Namirnice from './pages/Namirnice';
 import Favorites from './pages/Favorites';
+import UserProfile from './pages/UserProfile';
 
 import { jwtDecode } from 'jwt-decode';
 import './App.css';
@@ -69,6 +70,9 @@ function App() {
             <Route path="recepti/kategorija/:kategorija" element={<ReceptiKategorija />} />
             <Route path="recepti/:id" element={<ReceptDetalji />} />
             <Route path="omiljeno" element={token ? <Favorites /> : <Navigate to="/login" />} />
+
+            {/* Link ka profilu korisnika */}
+            <Route path="/users/:userId" element={<UserProfile />} />
           </Route>
 
           {/* Login/signup bez layout-a */}

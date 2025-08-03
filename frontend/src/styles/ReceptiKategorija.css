@@ -113,3 +113,21 @@ h2 {
   color: var(--button-hover-text);
   transform: scale(1.05);
 }
+
+
+/* Loading */
+.loading-spinner {
+  margin: 40px auto;
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #93785B; 
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

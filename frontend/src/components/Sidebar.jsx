@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Sidebar.css';
 
+
+//importovanje React ikonice za dark/light mode
 import { FaRegSun } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 

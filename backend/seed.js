@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
-const Recept = require('./models/Recept');
+const Recipe = require('./models/Recipe');
+
 require('dotenv').config();
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Povezano sa MongoDB.'))
   .catch((err) => console.error('Greška pri povezivanju:', err));
 
-const recepti = [
+
+
+
+const seedRecepti = [
   {
     naziv: "Jogurt sladoled",
     sastojci: [
@@ -22,9 +26,11 @@ const recepti = [
       "U kalupe za sladoled dodajte voće po želji. Voće prelijte sa smjesom jogurta i banane za bijele sladolede ili smjesom jogurta i malina za ružičaste sladolede.",
       "Kalupe ostavite u zamrzivaču preko noći."
     ],
-    vreme: "15min",
+    vreme: "15 min",
     slika: "https://piovariations.cdn.podravka.net/720b3d54-609e-11f0-b83b-46b1c4d84b92/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Dezert"]
+    kategorija: ["Dezert"],
+    createdAt: new Date('2025-06-15'),
+    user: '688f73033708e0cb89ef4adf'
   },
   {
     naziv: "Letnja salata sa borovnicama i feta sirom",
@@ -44,8 +50,9 @@ const recepti = [
     ],
     vreme: "10min",
     slika: "https://piovariations.cdn.podravka.net/7ad252fc-633b-11f0-bf44-46b1c4d84b92/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Ručak","Zdrav obrok"]
-
+    kategorija: ["Ručak","Zdrav obrok"],
+    createdAt: new Date('2025-06-15'),
+    user: '688f733e3708e0cb89ef4ae2'
   },
   {
     naziv: "Bloody Berry torta",
@@ -73,7 +80,9 @@ const recepti = [
     ],
     vreme: "95min",
     slika: "https://piovariations.cdn.podravka.net/893116e0-62fe-11f0-8e4a-46b1c4d84b92/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1024x768-f2b21802-64bc-11eb-a115-0242ac130010.webp",
-    kategorija: ["Dezert"]
+    kategorija: ["Dezert"],
+    createdAt: new Date('2025-06-15'),
+    user: '688f733e3708e0cb89ef4ae2'
 
   },
   {
@@ -91,8 +100,9 @@ const recepti = [
     ],
     vreme: "30 minuta",
     slika: "https://piovariations.cdn.podravka.net/f5387772-610d-11eb-be50-0242ac12001b/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Ručak"]
-
+    kategorija: ["Ručak"],
+    createdAt: new Date('2025-06-15'),
+    user: '688f733e3708e0cb89ef4ae2'
   },
   {
     naziv: "Pileći ražnjići s povrćem",
@@ -115,8 +125,9 @@ const recepti = [
     ],
     vreme: "45 minuta",
     slika: "https://piovariations.cdn.podravka.net/f47b22f8-610d-11eb-88fa-0242ac12001d/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1024x768-f2b21802-64bc-11eb-a115-0242ac130010.webp",
-    kategorija: ["Ručak","Večera"]
-
+    kategorija: ["Ručak","Večera"],
+    createdAt: new Date('2025-06-15'),
+    user: '688f733e3708e0cb89ef4ae2'
   },
   {
     naziv: "Pečena mlada piletina",
@@ -134,8 +145,9 @@ const recepti = [
     ],
     vreme: "60 minuta",
     slika: "https://piovariations.cdn.podravka.net/e4d7df6c-610d-11eb-8e3b-0242ac120016/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1024x768-f2b21802-64bc-11eb-a115-0242ac130010.webp",
-    kategorija: ["Ručak","Večera"]
-
+    kategorija: ["Ručak","Večera"],
+    createdAt: new Date('2025-06-18'),
+    user: '688f73033708e0cb89ef4adf'
   },
   {
     naziv: "Piletina s rižom iz pećnice",
@@ -161,8 +173,9 @@ const recepti = [
     ],
     vreme: "60 minuta",
     slika: "https://piovariations.cdn.podravka.net/b21dd7aa-63bc-11eb-b57b-0242ac12001a/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-        kategorija: ["Ručak","Večera","Zdrav obrok"]
-
+    kategorija: ["Ručak","Večera","Zdrav obrok"],
+    createdAt: new Date('2025-06-15'),
+    user: '688f73543708e0cb89ef4ae7'
   },
   {
     naziv: "Pileća krem čorba",
@@ -185,8 +198,9 @@ const recepti = [
     ],
     vreme: "45 minuta",
     slika: "https://piovariations.cdn.podravka.net/82ce3d5e-6421-11eb-ae21-0242ac12002a/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Ručak"]
-
+    kategorija: ["Ručak"],
+    createdAt: new Date('2025-06-15'),
+    user: '688f733e3708e0cb89ef4ae2'
   },
   {
   naziv: "Namaz od patlidžana s bademima",
@@ -208,7 +222,9 @@ const recepti = [
   ],
   vreme: "40 minuta",
   slika: "https://piovariations.cdn.podravka.net/c328da32-5677-11ec-a312-ae48ed498d44/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-      kategorija: ["Ručak","Večera","Zdrav obrok"]
+  kategorija: ["Ručak","Večera","Zdrav obrok"],
+  createdAt: new Date('2025-06-15'),
+  user: '688f73033708e0cb89ef4adf'
 
 },
 {
@@ -233,26 +249,41 @@ const recepti = [
   ],
   vreme: "30 minuta",
   slika: "https://piovariations.cdn.podravka.net/f47dfadc-610d-11eb-9d2b-0242ac120034/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-  kategorija: ["Doručak","Večera","Zdrav obrok"]
-
-}
-
-
-
+  kategorija: ["Doručak","Večera","Zdrav obrok"],
+  createdAt: new Date('2025-06-15'),
+  user: '688f73543708e0cb89ef4ae7'
+}];
 
 
-
-];
-
-async function ubaciRecepte() {
+async function seeduj() {
   try {
-    await Recept.deleteMany(); // obriši prethodne ako ih ima
-    await Recept.insertMany(recepti);
+    await Recipe.deleteMany();
+
+    // Direktno ubacujemo seedRecepti onako kako jesu (user može biti '' ili null)
+    await Recipe.insertMany(seedRecepti);
+
     console.log("Recepti uspešno ubačeni u bazu.");
-    mongoose.disconnect();
   } catch (error) {
-    console.error("Greška pri ubacivanju:", error);
+    console.error("Greška pri seedovanju:", error);
+  } finally {
+    mongoose.disconnect();
   }
 }
 
-ubaciRecepte();
+
+seeduj();
+
+// async function ubaciRecepte() {
+//   try {
+//     await Recept.deleteMany(); // obriši prethodne ako ih ima
+//     await Recept.insertMany(recepti);
+//     console.log("Recepti uspešno ubačeni u bazu.");
+//     mongoose.disconnect();
+//   } catch (error) {
+//     console.error("Greška pri ubacivanju:", error);
+//   }
+// }
+
+
+
+// ubaciRecepte();

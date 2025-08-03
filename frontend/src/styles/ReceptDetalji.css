@@ -1,5 +1,5 @@
 .container {
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 0 auto;
   padding: 20px;
   color: var(--text);
@@ -9,6 +9,50 @@ h2.text-center {
   margin-bottom: 1.5rem;
   font-weight: 700;
 }
+
+/* Meta info ispod naslova (datum i autor) */
+.meta-info {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary, #555);
+  font-style: italic;
+  font-size: 0.9rem;
+
+  
+}
+
+.meta-info p {
+  margin: 0.2rem 0;
+}
+
+
+
+.autor {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 6px;
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--text);
+  /* font-style: normal; */
+}
+
+.autor-link {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.autor-link:hover {
+  text-decoration: underline;
+}
+
+.icon-profile {
+  font-size: 2rem;
+  color: var(--link);
+  vertical-align: middle;
+}
+
 
 /* Flex za sastojke i sliku jedan do drugog */
 .flex-row {
@@ -69,7 +113,7 @@ ul.sastojci-lista li {
   text-align: center;
 }
 
-/* Hover isto kao u app.css */
+/* Hover efekat dugmeta */
 .show-more-btn:hover {
   background-color: var(--link);
   color: var(--button-text);
@@ -84,7 +128,6 @@ ul.sastojci-lista li {
   font-size: 2rem;
   color: var(--text);
 }
-
 
 .section-title {
   font-size: 1.2rem;

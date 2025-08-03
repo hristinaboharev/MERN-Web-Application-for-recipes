@@ -6,8 +6,15 @@ const receptSchema = new mongoose.Schema({
   priprema: [String],
   vreme: String,
   slika: String,
-  kategorija: [String]  // ovde niz stringova
-});
+  kategorija: [String],  // niz stringova
+
+  // veza sa User modelom
+  user:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
+}, {timestamps: true}); //automatski dodaje createdAt i updateAt
 
 
 module.exports = mongoose.model('Recept', receptSchema);

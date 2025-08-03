@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 22vw;
+  width: 18vw;
   height: 100vh;
   background-color: var(--sidebar-bg, #748D92);
   color: var(--text-color, white);

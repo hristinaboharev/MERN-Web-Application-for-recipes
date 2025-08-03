@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/ReceptDetalji.css';
 
+import { CgProfile } from "react-icons/cg";
+
+
 const ReceptDetalji = () => {
   const { id } = useParams();
   const [recept, setRecept] = useState(null);
@@ -30,10 +33,33 @@ const ReceptDetalji = () => {
       : Array.isArray(recept.priprema) 
         ? recept.priprema 
         : [];
+  
+  // Formatiranje datuma na latinici, dd.mm.yyyy.
+  const formatDatum = (dateString) => {
+    const d = new Date(dateString);
+    const day = d.getDate().toString().padStart(2, '0');
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}.${month}.${year}.`;
+  };
 
   return (
     <div className="container mt-5">
       <h2 className="recept-naslov">{recept.naziv}</h2>
+
+      <div className="meta-info">
+        <p>Datum kreiranja: {formatDatum(recept.createdAt)}</p>
+        {recept.user && recept.user.username ? (
+          <p className="autor">
+            <CgProfile className="icon-profile" />
+            <Link to={`/users/${recept.user._id}`} className="autor-link">
+              {recept.user.username}
+            </Link>
+          </p>
+        ) : (
+          <p>Autor: Nepoznat</p>
+        )}
+      </div>
 
       <div className="flex-row mb-4">
         <div>

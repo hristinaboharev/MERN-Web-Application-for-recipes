@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Recept = require('../models/Recept');
+const Recipe = require('../models/Recipe');
 
-// Svi recepti
+// Svi recepti sa username-om
 router.get('/', async (req, res) => {
   try {
-    const recepti = await Recept.find();
+    const recepti = await Recipe.find().populate('user', 'username');
     res.json(recepti);
   } catch (err) {
     res.status(500).json({ error: 'Greška pri dohvatanju recepata' });
@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
 router.get('/pretraga', async (req, res) => {
   const { sastojak } = req.query;
   try {
-    const rezultati = await Recept.find({
+    const rezultati = await Recipe.find({
       sastojci: { $regex: sastojak, $options: 'i' }
-    });
+    }).populate('user', 'username');
     res.json(rezultati);
   } catch (err) {
     res.status(500).json({ message: 'Greška pri pretrazi' });
@@ -29,16 +29,18 @@ router.get('/pretraga', async (req, res) => {
 
 
 
-// Jedan recept po ID
+
+// Jedan recept po ID sa populacijom user-a (username)
 router.get('/:id', async (req, res) => {
   try {
-    const recept = await Recept.findById(req.params.id);
+    const recept = await Recipe.findById(req.params.id).populate('user', 'username');
     if (!recept) return res.status(404).json({ message: 'Recept nije pronađen' });
     res.json(recept);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
+
 
 
 // POST više recepata po ID-jevima (za sačuvane)
@@ -48,7 +50,7 @@ router.post('/rezervisi-po-id', async (req, res) => {
     if (!ids || !Array.isArray(ids)) {
       return res.status(400).json({ message: 'Niste poslali ispravnu listu ID-jeva.' });
     }
-    const recepti = await Recept.find({ _id: { $in: ids } });
+    const recepti = await Recipe.find({ _id: { $in: ids } });
     res.json(recepti);
   } catch (err) {
     console.error(err);

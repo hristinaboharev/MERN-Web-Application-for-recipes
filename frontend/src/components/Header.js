@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Uvozi Link komponentu koja služi za navigaciju između stranica
 import './Header.css';
 
 

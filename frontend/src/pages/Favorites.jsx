@@ -41,7 +41,7 @@ const Favorites = () => {
             )}
             <div className="kartica-sadrzaj">
               <h5>{recept.naziv}</h5>
-              <p>⏱ Vreme pripreme: {recept.vreme || "N/A"} min</p>
+              <p>⏱ Vreme pripreme: {recept.vreme || "N/A"}</p>
               <button
                 // CSS u namirnice.css
                 className="prikazi-vise-btn ukloni"

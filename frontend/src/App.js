@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
+import Layout from './components/Layout';
+import Login from './Login';
+import Signup from './Signup';
 import Recepti from './pages/Recepti';
 import ReceptDetalji from './pages/ReceptDetalji';
 import ReceptiKategorija from './pages/ReceptiKategorija';
 import Namirnice from './pages/Namirnice';
 import Favorites from './pages/Favorites';
-import Login from './Login';
-import Signup from './Signup';
-
-import Layout from './components/Layout'; // NOVA komponenta
 
 import { jwtDecode } from 'jwt-decode';
 import './App.css';
-
 import { SavedProvider } from './components/SavedContext';
+
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));

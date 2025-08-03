@@ -12,9 +12,6 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Logo levo */
-
-
 .logo span {
   font-size: 3rem;
   font-weight: 700;
@@ -28,7 +25,6 @@
   text-shadow: 0 0 8px var(--button-bg);
 }
 
-/* Navigacija centrirana */
 .main-nav {
   flex: 1;
   display: flex;
@@ -125,12 +121,13 @@
   border-radius: 6px;
 }
 
+
 /* Desni deo: Login, Signup, Logout */
 .auth-links {
   display: flex;
   gap: 16px;
   align-items: center;
-  flex-shrink: 0; /* da ne skupljuje */
+  flex-shrink: 0; 
 }
 
 .auth-links a,
@@ -153,6 +150,7 @@
   background-color: var(--button-hover-bg);
   box-shadow: 0 0 10px var(--button-hover-bg);
 }
+
 
 /* Responsive za male ekrane */
 @media (max-width: 720px) {

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
-import '../styles/ReceptiKategorija.css';
+import '../styles/RecipeCategory.css';
 
 const ReceptiKategorija = () => {
   const { kategorija } = useParams();

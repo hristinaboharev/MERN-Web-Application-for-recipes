@@ -3,16 +3,22 @@ import axios from 'axios';
 import Slider from 'react-slick';
 import { PrevArrow, NextArrow } from '../components/CustomArrows';
 import { Link, useParams } from 'react-router-dom';
-import '../styles/Recepti.css';
+import '../styles/Recipes.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { SavedContext } from '../components/SavedContext';
 
+
+import Divider from '@mui/material/Divider';
+import Chip from '@mui/material/Chip'; 
+import Pagination from '@mui/material/Pagination';
+
+
 const Recepti = () => {
   const { kategorija } = useParams();
   const [recepti, setRecepti] = useState([]);
-  const [najnoviji, setNajnoviji] = useState([]);
+  // const [najnoviji, setNajnoviji] = useState([]);
   const { saved, toggleSave } = useContext(SavedContext);
 
 
@@ -50,13 +56,13 @@ const Recepti = () => {
   const currentRecepti = recepti.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(recepti.length / itemsPerPage);
 
-  const goToNextPage = () => {
-    setCurrentPage(prev => Math.min(prev + 1, totalPages));
-  };
+  // const goToNextPage = () => {
+  //   setCurrentPage(prev => Math.min(prev + 1, totalPages));
+  // };
 
-  const goToPrevPage = () => {
-    setCurrentPage(prev => Math.max(prev - 1, 1));
-  };
+  // const goToPrevPage = () => {
+  //   setCurrentPage(prev => Math.max(prev - 1, 1));
+  // };
 
   
   const settings = {
@@ -74,9 +80,30 @@ const Recepti = () => {
   };
 
   return (
+    
     <div className="containerRecipe">
 
-{/* Grid sa svim receptima */}
+      <div 
+        className="header-container" 
+        style={{ backgroundImage: `url(/images/pozadina.jpg)` }}
+      >
+        <div className="header-content">
+          <h1>Tvoj recept, naša inspiracija </h1>
+          <h2>gde se tradicija i mašta sreću</h2>
+
+        </div>
+
+        {/* mala slika hrane preko pozadine */}
+        <img 
+          src="/images/hamburger.png" 
+          alt="Hrana" 
+          className="food-overlay"
+        />
+      </div>
+
+
+
+      {/* Grid sa svim receptima */}
       <h2>Svi recepti</h2>
       <div className="recipe-grid">
         {currentRecepti.length > 0 ? (
@@ -102,20 +129,24 @@ const Recepti = () => {
         )}
       </div>
 
-      {/* Paginacija */}
-      <div className="pagination">
-        <button onClick={goToPrevPage} disabled={currentPage === 1}>
-          Prethodna
-        </button>
-        <span>Strana {currentPage} od {totalPages}</span>
-        <button onClick={goToNextPage} disabled={currentPage === totalPages}>
-          Sledeća
-        </button>
-      </div>
+      <Pagination
+        count={totalPages}
+        page={currentPage}
+        onChange={(event, page) => setCurrentPage(page)}
+        variant="outlined"
+        color="primary"
+        showFirstButton
+        showLastButton
+        sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}
+      />
+
 
       {/* Slider najnovijih recepata */}
       <div style={{ marginTop: 40 }}>
-        <h2>Najnoviji recepti</h2>
+          <Divider className="custom-divider">
+            <Chip label="Najnoviji recepti" />
+          </Divider>
+        {/* <h2>Najnoviji recepti</h2> */}
         {najnovijiRecepti.length > 0 ? (
           <Slider {...settings}>
             {najnovijiRecepti.map(recept => {

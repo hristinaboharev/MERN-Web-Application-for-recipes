@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Uvozi Link komponentu koja služi za navigaciju između stranica
 import './Header.css';
-
+import "../styles/Header.css";
 
 const Header = ({ token, username, onLogout }) => {
   return (

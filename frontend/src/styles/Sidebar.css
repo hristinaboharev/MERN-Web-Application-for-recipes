@@ -127,6 +127,54 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* .user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* razmak između avatara i korisničkog imena */
+
+/* Omotač za korisnički deo sa dropdown-om */
+.user-info.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Dropdown meni sakriven po default-u */
+.user-info.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: 100%; /* iznad korisničkog dela */
+  left: 0;
+  background-color: var(--sidebar-bg, #748D92);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  padding: 0.5rem 0;
+  min-width: 150px;
+  z-index: 2000;
+  flex-direction: column;
+}
+
+/* Linkovi u dropdown meniju */
+.user-info.dropdown .dropdown-content a {
+  color: var(--text-color, white);
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.user-info.dropdown .dropdown-content a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Prikaz dropdown menija na hover */
+.user-info.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+
 /* Sekcija za login/logout na dnu */
 .auth-links {
   margin-top: auto;

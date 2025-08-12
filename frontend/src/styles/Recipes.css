@@ -1,6 +1,7 @@
 
 .containerRecipe{
   margin: 50px 40px;
+  /* margin: 0; */
 }
 
 .search-bar {
@@ -234,4 +235,75 @@
 .pagination button:hover:not(:disabled) {
   background-color: var(--button-hover-bg);
   color: var(--button-hover-text);
+}
+
+
+.custom-divider {
+  font-size: 50px;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.custom-divider .MuiChip-root {
+  font-size: 1.2rem !important;
+  padding: 6px 16px !important;
+}
+
+
+
+.header-container {
+  position: relative;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 40px;
+  padding-bottom: 20px;
+}
+
+
+.header-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Fade efekat sa obe strane */
+  background: linear-gradient(
+    to right,
+    #f7f7f7 -2%,
+    rgba(0,0,0,0) 20%,
+    rgba(0,0,0,0) 80%,
+    rgba(8, 8, 8, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.header-content{
+  position: relative;
+  z-index: 2; /* iznad pozadine */
+  color: white;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+  font-size: 23px;
+}
+
+.header-content h2{
+  color: #AFE1AF;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+
+}
+
+/* mala slika hrane */
+.food-overlay {
+  position: absolute;
+  bottom: -70px;  /* pomeri ispod pozadinske sekcije */
+  right: 40px;     /* prilagodi po želji */
+  width: 30%;
+  height: auto;
+  z-index: 3;
+  border-radius: 12px;
 }

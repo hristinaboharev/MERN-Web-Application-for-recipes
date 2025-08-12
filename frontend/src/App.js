@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Layout from './components/Layout';
 import Login from './Login';
 import Signup from './Signup';
-import Recepti from './pages/Recepti';
-import ReceptDetalji from './pages/ReceptDetalji';
-import ReceptiKategorija from './pages/ReceptiKategorija';
-import Namirnice from './pages/Namirnice';
+import Recepti from './pages/Recipes';
+import ReceptDetalji from './pages/RecipeDetails';
+import ReceptiKategorija from './pages/RecipeCategory';
+import Namirnice from './pages/IngredientSearch';
 import Favorites from './pages/Favorites';
 import UserProfile from './pages/UserProfile';
 
@@ -19,18 +19,23 @@ import { SavedProvider } from './components/SavedContext';
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [username, setUsername] = useState(null);
+  const [userId, setUserId] = useState(null);
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     if (token) {
       try {
         const decoded = jwtDecode(token);
+        
         setUsername(decoded.username);
+        setUserId(decoded.id || decoded.userId || decoded._id); // proveri šta je u tokenu
       } catch {
         setUsername(null);
+        setUserId(null);
       }
     } else {
       setUsername(null);
+      setUserId(null);
     }
   }, [token]);
 
@@ -59,6 +64,7 @@ function App() {
               <Layout
                 token={token}
                 username={username}
+                userId={userId}
                 onLogout={handleLogout}
                 toggleTheme={toggleTheme}
                 theme={theme}

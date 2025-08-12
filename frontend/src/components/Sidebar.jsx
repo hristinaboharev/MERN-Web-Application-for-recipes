@@ -8,9 +8,12 @@ import { FaRegSun } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 
 
-const Sidebar = ({ token, onLogout, username }) => {
+import Avatar from '@mui/material/Avatar';
+
+const Sidebar = ({ token, onLogout, username, userId }) => {
   const [theme, setTheme] = useState('light');
   const location = useLocation();
+
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -80,9 +83,20 @@ const Sidebar = ({ token, onLogout, username }) => {
 
         {token ? (
           <>
-            <span className="user-info">Prijavljen: <b>{username}</b></span>
+            <div className="user-info dropdown">
+              <Avatar sx={{ width: 32, height: 32, cursor: 'pointer' }} />
+              <span className="username">{username}</span>
+
+              <div className="dropdown-content">
+                <Link to="/recept">Dodaj recept</Link>
+                <Link to={`/users/${userId}`}>Moji recepti</Link>
+
+                
+              </div>
+            </div>
             <button onClick={onLogout} className="logout-btn">Logout</button>
           </>
+
         ) : (
           <>
             <Link to="/login" className="auth-btn">Login</Link>

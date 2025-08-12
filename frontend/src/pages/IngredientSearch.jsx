@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../styles/Namirnice.css';
+import '../styles/IngredientSearch.css';
 
 const Namirnice = () => {
   const [unos, setUnos] = useState('');

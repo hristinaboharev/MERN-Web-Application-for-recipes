@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { SavedContext } from "../components/SavedContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../styles/Namirnice.css"; // koristi isti css kao namirnice
+import "../styles/IngredientSearch.css"; // koristi isti css kao namirnice
 import { FaHeart } from "react-icons/fa";
 
 const Favorites = () => {

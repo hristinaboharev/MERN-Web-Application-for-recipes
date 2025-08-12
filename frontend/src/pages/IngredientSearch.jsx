@@ -16,13 +16,25 @@ const Namirnice = () => {
     }
   };
 
+  // Funkcija koja vraća pun URL slike, bilo da je pun link ili relativna putanja
+  const getSlikaUrl = (putanja) => {
+    if (!putanja) return '/default-image.jpg';
+
+    if (putanja.startsWith('http://') || putanja.startsWith('https://')) {
+      return putanja;
+    }
+
+    return `http://localhost:5000${putanja}`;
+  };
+
   return (
-    <div className="namirnice-container"   style={{
-    backgroundImage: "url('/images/background.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    minHeight: '100vh',}}>
+    <div className="namirnice-container" style={{
+      backgroundImage: "url('/images/background.jpg')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      minHeight: '100vh',
+    }}>
       <h2>Koje namirnice imaš?</h2>
       <div className="namirnice-input-group">
         <input
@@ -44,7 +56,7 @@ const Namirnice = () => {
             {rezultati.map(r => (
               <Link to={`/recepti/${r._id}`} key={r._id} className="rezultat-kartica">
                 {r.slika ? (
-                  <img src={r.slika} alt={r.naziv} className="kartica-slika" />
+                  <img src={getSlikaUrl(r.slika)} alt={r.naziv} className="kartica-slika" />
                 ) : (
                   <div className="kartica-slika-placeholder">Nema slike</div>
                 )}

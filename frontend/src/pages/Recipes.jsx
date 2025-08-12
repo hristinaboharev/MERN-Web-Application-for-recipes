@@ -9,24 +9,18 @@ import 'slick-carousel/slick/slick-theme.css';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { SavedContext } from '../components/SavedContext';
 
-
 import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip'; 
 import Pagination from '@mui/material/Pagination';
 
-
 const Recepti = () => {
   const { kategorija } = useParams();
   const [recepti, setRecepti] = useState([]);
-  // const [najnoviji, setNajnoviji] = useState([]);
   const { saved, toggleSave } = useContext(SavedContext);
-
-
 
   // Paginacija za grid
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
-
 
   useEffect(() => {
     let url = 'http://localhost:5000/api/recepti';
@@ -49,22 +43,23 @@ const Recepti = () => {
     return datum >= desetDanaUnazad && datum <= danas;
   });
 
-  
   // Paginarani recepti za grid
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentRecepti = recepti.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(recepti.length / itemsPerPage);
 
-  // const goToNextPage = () => {
-  //   setCurrentPage(prev => Math.min(prev + 1, totalPages));
-  // };
+  // Funkcija koja vraća pun URL slike, bilo da je pun link ili relativna putanja
+  const getSlikaUrl = (putanja) => {
+    if (!putanja) return '/default-image.jpg';
 
-  // const goToPrevPage = () => {
-  //   setCurrentPage(prev => Math.max(prev - 1, 1));
-  // };
+    if (putanja.startsWith('http://') || putanja.startsWith('https://')) {
+      return putanja;
+    }
 
-  
+    return `http://localhost:5000${putanja}`;
+  };
+
   const settings = {
     dots: false,
     infinite: false,
@@ -80,7 +75,6 @@ const Recepti = () => {
   };
 
   return (
-    
     <div className="containerRecipe">
 
       <div 
@@ -90,7 +84,6 @@ const Recepti = () => {
         <div className="header-content">
           <h1>Tvoj recept, naša inspiracija </h1>
           <h2>gde se tradicija i mašta sreću</h2>
-
         </div>
 
         {/* mala slika hrane preko pozadine */}
@@ -101,8 +94,6 @@ const Recepti = () => {
         />
       </div>
 
-
-
       {/* Grid sa svim receptima */}
       <h2>Svi recepti</h2>
       <div className="recipe-grid">
@@ -110,7 +101,7 @@ const Recepti = () => {
           currentRecepti.map(recept => (
             <div key={recept._id} className="recipe-card">
               {recept.slika ? (
-                <img src={recept.slika} alt={recept.naziv} className="card-img" />
+                <img src={getSlikaUrl(recept.slika)} alt={recept.naziv} className="card-img" />
               ) : (
                 <div className="card-img-placeholder">Nema slike</div>
               )}
@@ -140,13 +131,11 @@ const Recepti = () => {
         sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}
       />
 
-
       {/* Slider najnovijih recepata */}
       <div style={{ marginTop: 40 }}>
-          <Divider className="custom-divider">
-            <Chip label="Najnoviji recepti" />
-          </Divider>
-        {/* <h2>Najnoviji recepti</h2> */}
+        <Divider className="custom-divider">
+          <Chip label="Najnoviji recepti" />
+        </Divider>
         {najnovijiRecepti.length > 0 ? (
           <Slider {...settings}>
             {najnovijiRecepti.map(recept => {
@@ -156,7 +145,7 @@ const Recepti = () => {
               return (
                 <div key={recept._id} className="recipe-card">
                   {recept.slika ? (
-                    <img src={recept.slika} alt={recept.naziv} className="card-img" />
+                    <img src={getSlikaUrl(recept.slika)} alt={recept.naziv} className="card-img" />
                   ) : (
                     <div className="card-img-placeholder">Nema slike</div>
                   )}
@@ -168,7 +157,6 @@ const Recepti = () => {
                     <p><strong>⏱ Vreme:</strong> {recept.vreme}</p>
                     <p><strong>📅 Datum:</strong> {datumFormatirano}</p>
 
-                    
                     <Link to={`/recepti/${recept._id}`} className="show-more-btn">
                       Prikaži više
                     </Link>
@@ -181,7 +169,6 @@ const Recepti = () => {
           <p className="text-center">Nema recepata kreiranih u poslednjih 10 dana.</p>
         )}
       </div>
-
 
     </div>
   );

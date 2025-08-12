@@ -20,6 +20,8 @@ app.use('/api/auth',authRoutes);
 app.use('/api/recepti', receptiRouter);
 app.use('/api/users', usersRouter);
 
+//Za upload slika
+app.use('/uploads', express.static('uploads'));
 
 // Poveži se na MongoDB
 mongoose.connect(process.env.MONGO_URI, { 

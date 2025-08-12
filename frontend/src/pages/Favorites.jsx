@@ -20,6 +20,17 @@ const Favorites = () => {
       .catch((err) => console.error(err));
   }, [saved]);
 
+  // Funkcija za dobijanje punog URL slike
+  const getSlikaUrl = (putanja) => {
+    if (!putanja) return '/default-image.jpg';
+
+    if (putanja.startsWith('http://') || putanja.startsWith('https://')) {
+      return putanja;
+    }
+
+    return `http://localhost:5000${putanja}`;
+  };
+
   return (
     <div className="namirnice-container">
       <h2>Sačuvani recepti</h2>
@@ -32,7 +43,7 @@ const Favorites = () => {
           >
             {recept.slika ? (
               <img
-                src={recept.slika}
+                src={getSlikaUrl(recept.slika)}
                 alt={recept.naziv}
                 className="kartica-slika"
               />

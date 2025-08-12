@@ -5,7 +5,6 @@ import '../styles/RecipeDetails.css';
 
 import { CgProfile } from "react-icons/cg";
 
-
 const ReceptDetalji = () => {
   const { id } = useParams();
   const [recept, setRecept] = useState(null);
@@ -26,14 +25,25 @@ const ReceptDetalji = () => {
   if (error) return <p className="text-center mt-5 text-danger">Greška pri učitavanju recepta.</p>;
   if (!recept) return <p className="text-center mt-5">Recept nije pronađen.</p>;
 
+  // Funkcija koja vraća pravi URL slike, bilo da je full link ili relativna putanja
+  const getSlikaUrl = (putanja) => {
+    if (!putanja) return '/default-image.jpg';
+
+    if (putanja.startsWith('http://') || putanja.startsWith('https://')) {
+      return putanja;
+    }
+
+    return `http://localhost:5000${putanja}`;
+  };
+
   // Ako je priprema string sa novim redovima, podeli na niz
-  const pripremaNiz = 
-    typeof recept.priprema === 'string' 
-      ? recept.priprema.split('\n').filter(line => line.trim() !== '') 
-      : Array.isArray(recept.priprema) 
-        ? recept.priprema 
+  const pripremaNiz =
+    typeof recept.priprema === 'string'
+      ? recept.priprema.split('\n').filter(line => line.trim() !== '')
+      : Array.isArray(recept.priprema)
+        ? recept.priprema
         : [];
-  
+
   // Formatiranje datuma na latinici, dd.mm.yyyy.
   const formatDatum = (dateString) => {
     const d = new Date(dateString);
@@ -73,7 +83,7 @@ const ReceptDetalji = () => {
 
         <div>
           <img
-            src={recept.slika || '/default-image.jpg'}
+            src={getSlikaUrl(recept.slika)}
             alt={recept.naziv}
             className="img-recept"
           />

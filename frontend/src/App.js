@@ -10,6 +10,7 @@ import ReceptiKategorija from './pages/RecipeCategory';
 import Namirnice from './pages/IngredientSearch';
 import Favorites from './pages/Favorites';
 import UserProfile from './pages/UserProfile';
+import CreateRecipe from './pages/CreateRecipe';
 
 import { jwtDecode } from 'jwt-decode';
 import './App.css';
@@ -80,6 +81,9 @@ function App() {
             {/* Link ka profilu korisnika */}
             <Route path="/users/:userId" element={<UserProfile />} />
           </Route>
+
+          <Route path="/recept" element={token ? <CreateRecipe /> : <Navigate to="/login" />} />
+
 
           {/* Login/signup bez layout-a */}
           <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />} />

@@ -1,15 +1,12 @@
 .user-profile-container {
-  /* max-width: 900px; */
-  /* margin: 40px auto; */
   /* padding: 0 20px; */
   color: var(--text);
+  padding: 20px;
 }
 
 .username-box {
   display: flex;
 
-
-  /* background-color: var(--bg-secondary, #f0f0f0); */
   margin-top: 50px;
   padding: 30px;
   text-align: center;

@@ -67,5 +67,24 @@ router.post('/rezervisi-po-id', async (req, res) => {
   }
 });
 
+// GET najnoviji recepti (poslednjih 10 dana)
+// Najnoviji recepti unazad 10 dana
+router.get('/najnoviji', async (req, res) => {
+  try {
+    const danas = new Date();
+    const stariDatum = new Date();
+    stariDatum.setDate(danas.getDate() - 10); // 10 dana unazad od danasnjeg datuma
+
+    // Pronađi recepte sa createdAt >= deset dana unazad, sortiraj po datumu opadajuće
+    const recepti = await Recept.find({
+      createdAt: { $gte: stariDatum}
+    }).sort({ createdAt: -1 });
+
+    res.json(recepti);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Greška pri dohvaćanju najnovijih recepata.' });
+  }
+});
 
 module.exports = router;

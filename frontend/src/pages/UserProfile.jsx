@@ -18,7 +18,7 @@ const UserProfile = () => {
     axios.get(`http://localhost:5000/api/recepti/korisnik/${userId}`)
       .then(res => {
         if (res.data.length > 0) {
-          setUsername(res.data[0].user.username);  // Pretpostavljamo da svi recepti imaju istog usera
+          setUsername(res.data[0].user.username);  
           setRecepti(res.data);
         } else {
           setUsername('Nepoznat korisnik');

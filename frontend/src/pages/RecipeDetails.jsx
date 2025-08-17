@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/RecipeDetails.css';
-
 import { CgProfile } from "react-icons/cg";
+import useImage from '../hooks/useImage';
 
 const ReceptDetalji = () => {
   const { id } = useParams();
   const [recept, setRecept] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  // Poziv hook-a NA VRHU, bez obzira da li je recept učitan
+  const imageUrl = useImage(recept ? recept.slika : null);
 
   useEffect(() => {
     axios.get(`http://localhost:5000/api/recepti/${id}`)
@@ -24,17 +27,6 @@ const ReceptDetalji = () => {
   if (loading) return <p className="text-center mt-5">Učitavanje...</p>;
   if (error) return <p className="text-center mt-5 text-danger">Greška pri učitavanju recepta.</p>;
   if (!recept) return <p className="text-center mt-5">Recept nije pronađen.</p>;
-
-  // Funkcija koja vraća pravi URL slike, bilo da je full link ili relativna putanja
-  const getSlikaUrl = (putanja) => {
-    if (!putanja) return '/default-image.jpg';
-
-    if (putanja.startsWith('http://') || putanja.startsWith('https://')) {
-      return putanja;
-    }
-
-    return `http://localhost:5000${putanja}`;
-  };
 
   // Ako je priprema string sa novim redovima, podeli na niz
   const pripremaNiz =
@@ -82,11 +74,15 @@ const ReceptDetalji = () => {
         </div>
 
         <div>
-          <img
-            src={getSlikaUrl(recept.slika)}
-            alt={recept.naziv}
-            className="img-recept"
-          />
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt={recept.naziv}
+              className="img-recept"
+            />
+          ) : (
+            <div className="img-placeholder">Nema slike</div>
+          )}
         </div>
       </div>
 

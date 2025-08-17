@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../styles/RecipeCategory.css';
+import RecipeCard from '../components/RecipeCard'; // importovanje kartice
 
 const ReceptiKategorija = () => {
   const { kategorija } = useParams();
@@ -11,7 +12,14 @@ const ReceptiKategorija = () => {
   useEffect(() => {
     axios.get('http://localhost:5000/api/recepti')
       .then(res => {
-        const normalize = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+        const normalize = str => 
+          str
+            .normalize("NFD")                     //razdvaja slova (npr. 'č' postaje 'c')
+            .replace(/[\u0300-\u036f]/g, "")     //uklanja sve dijakritike (accent-e)
+            .toLowerCase()                        
+            .trim();                              
+
+
         const filtrirani = res.data.filter(r => {
           if (Array.isArray(r.kategorija)) {
             return r.kategorija.some(k => normalize(k) === normalize(kategorija));
@@ -25,39 +33,16 @@ const ReceptiKategorija = () => {
       .finally(() => setLoading(false));
   }, [kategorija]);
 
-  // Funkcija za dobijanje pune putanje slike
-  const getSlikaUrl = (putanja) => {
-    if (!putanja) return '/default-image.jpg';
-
-    if (putanja.startsWith('http://') || putanja.startsWith('https://')) {
-      return putanja;
-    }
-
-    return `http://localhost:5000${putanja}`;
-  };
-
   return (
     <div className="container py-4">
       <h2>Kategorija: {kategorija}</h2>
+
       {loading ? (
         <div className="loading-spinner"></div>
       ) : recepti.length > 0 ? (
         <div className="recipe-grid">
           {recepti.map(recept => (
-            <div key={recept._id} className="recipe-card">
-              {recept.slika ? (
-                <img src={getSlikaUrl(recept.slika)} alt={recept.naziv} className="card-img" />
-              ) : (
-                <div className="card-img-placeholder">Nema slike</div>
-              )}
-              <div className="card-content">
-                <h4>{recept.naziv}</h4>
-                <p><strong>⏱ Vreme:</strong> {recept.vreme}</p>
-                <Link to={`/recepti/${recept._id}`} className="show-more-btn">
-                  Prikaži više
-                </Link>
-              </div>
-            </div>
+            <RecipeCard key={recept._id} recept={recept} />
           ))}
         </div>
       ) : (

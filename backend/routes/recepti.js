@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const Recept = require('../models/Recipe');
 const User = require('../models/User');
-const Category = require('../models/Category'); // dodaj model kategorije
+const Category = require('../models/Category'); 
 const authenticateToken = require('../middleware/authenticateToken');
 
 // Multer podešavanja
@@ -46,6 +46,7 @@ router.post('/', upload.single('slika'), authenticateToken, async (req, res) => 
     res.status(500).json({ message: 'Greška na serveru' });
   }
 });
+
 
 // GET svi recepti sa populacijom user-a i kategorija
 router.get('/', async (req, res) => {

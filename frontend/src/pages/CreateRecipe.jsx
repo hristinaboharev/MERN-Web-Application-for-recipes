@@ -54,54 +54,93 @@ const CreateRecipe = () => {
         body: formData
       });
 
-      if (!res.ok) throw new Error('Greška pri slanju recepta');
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.message || 'Greška pri slanju recepta');
+      }
+
       alert('Recept dodat!');
-      setNaslov(''); setSlika(null); setSastojci(['']); setPriprema(['']); setOdabraneKategorije([]);
+      setNaslov('');
+      setSlika(null);
+      setSastojci(['']);
+      setPriprema(['']);
+      setOdabraneKategorije([]);
     } catch (err) {
       alert(err.message);
     } finally { setLoading(false); }
   };
 
   return (
-    <form className="create-recipe-grid" onSubmit={handleSubmit}>
-
-      <div className="left-column">
-        <label>Naslov recepta</label>
-        <input type="text" placeholder="Naziv recepta" value={naslov} onChange={e => setNaslov(e.target.value)} required />
-        <label>Dodaj glavnu sliku</label>
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-        {slika && <img src={URL.createObjectURL(slika)} alt="preview" className="img-preview" />}
+    <div className="create-recipe-container">
+      <div className="top-button-container">
+        <button type="submit" className="submit-btn-top-right" onClick={handleSubmit}>
+          {loading ? 'Čuvanje...' : 'Sačuvaj recept'}
+        </button>
       </div>
 
-      <div className="middle-column">
-        <label>Sastojci</label>
-        {sastojci.map((s, i) => (
-          <div key={i} className="sastojak-row">
-            <input type="text" value={s} placeholder={`Sastojak #${i + 1}`} onChange={e => promeniSastojak(i, e.target.value)} required />
-            <button type="button" onClick={() => ukloniSastojak(i)} disabled={sastojci.length === 1}>x</button>
+      <form className="create-recipe-grid">
+
+        <div className="left-column">
+          <label>Naslov recepta</label>
+          <input type="text" placeholder="Naziv recepta" value={naslov} onChange={e => setNaslov(e.target.value)} required />
+          <label>Dodaj glavnu sliku</label>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+          {slika && <img src={URL.createObjectURL(slika)} alt="preview" className="img-preview" />}
+        </div>
+
+        <div className="middle-column">
+          <label>Sastojci</label>
+          {sastojci.map((s, i) => (
+            <div key={i} className="sastojak-row">
+              <input type="text" value={s} placeholder={`Sastojak #${i + 1}`} onChange={e => promeniSastojak(i, e.target.value)} required />
+              <button type="button" onClick={() => ukloniSastojak(i)} disabled={sastojci.length === 1}>x</button>
+            </div>
+          ))}
+          <button type="button" onClick={dodajSastojak}>Dodaj sastojak</button>
+
+          <label>Priprema (koraci)</label>
+          {priprema.map((p, i) => (
+            <div key={i} className="sastojak-row">
+              <textarea value={p} onChange={e => promeniKorak(i, e.target.value)} placeholder={`Korak #${i + 1}`} rows={3} required />
+              <button type="button" onClick={() => ukloniKorak(i)} disabled={priprema.length === 1}>x</button>
+            </div>
+          ))}
+          <button type="button" onClick={dodajKorak}>Dodaj korak</button>
+        </div>
+
+        <div className="right-column">
+          <label>Kategorije</label>
+          <div className="categories-checkbox">
+            {kategorije.map(k => (
+              <label key={k._id} className="category-checkbox">
+                <input
+                  type="checkbox"
+                  value={k._id}
+                  checked={odabraneKategorije.includes(k._id)}
+                  onChange={e => {
+                    if (e.target.checked) setOdabraneKategorije([...odabraneKategorije, k._id]);
+                    else setOdabraneKategorije(odabraneKategorije.filter(id => id !== k._id));
+                  }}
+                />
+                {k.naziv}
+              </label>
+            ))}
           </div>
-        ))}
-        <button type="button" onClick={dodajSastojak}>Dodaj sastojak</button>
 
-        <label>Priprema (koraci)</label>
-        {priprema.map((p, i) => (
-          <div key={i} className="sastojak-row">
-            <textarea value={p} onChange={e => promeniKorak(i, e.target.value)} placeholder={`Korak #${i + 1}`} rows={3} required />
-            <button type="button" onClick={() => ukloniKorak(i)} disabled={priprema.length === 1}>x</button>
+          <div className="selected-categories">
+            {odabraneKategorije.map(id => {
+              const kat = kategorije.find(k => k._id === id);
+              return kat ? (
+                <span key={id} className="category-tag">
+                  {kat.naziv}
+                  <button type="button" className="remove-tag-btn" onClick={() => setOdabraneKategorije(prev => prev.filter(i => i !== id))}>x</button>
+                </span>
+              ) : null;
+            })}
           </div>
-        ))}
-        <button type="button" onClick={dodajKorak}>Dodaj korak</button>
-      </div>
-
-      <div className="right-column">
-        <label>Kategorije</label>
-        <select multiple value={odabraneKategorije} onChange={e => setOdabraneKategorije([...e.target.selectedOptions].map(opt => opt.value))}>
-          {kategorije.map(k => <option key={k._id} value={k._id}>{k.naziv}</option>)}
-        </select>
-      </div>
-
-      <button type="submit" className="submit-btn">{loading ? 'Čuvanje...' : 'Sačuvaj recept'}</button>
-    </form>
+        </div>
+      </form>
+    </div>
   );
 };
 

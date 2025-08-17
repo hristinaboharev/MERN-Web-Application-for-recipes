@@ -7,6 +7,8 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const receptiRouter = require('./routes/recepti');
 const usersRouter = require('./routes/users');
+const categoryRoutes = require('./routes/categories');
+
 
 
 const app = express();
@@ -19,6 +21,7 @@ app.use(express.json());
 app.use('/api/auth',authRoutes);
 app.use('/api/recepti', receptiRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/kategorije', categoryRoutes);
 
 //Za upload slika
 app.use('/uploads', express.static('uploads'));

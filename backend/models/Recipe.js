@@ -6,7 +6,7 @@ const receptSchema = new mongoose.Schema({
   priprema: [String],
   vreme: String,
   slika: String,
-  kategorija: [String],  // niz stringova
+  kategorija: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
 
   // veza sa User modelom
   user:{

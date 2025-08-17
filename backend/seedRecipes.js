@@ -28,7 +28,9 @@ const seedRecepti = [
     ],
     vreme: "15 min",
     slika: "https://piovariations.cdn.podravka.net/720b3d54-609e-11f0-b83b-46b1c4d84b92/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Dezert"],
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92bb'), 
+    ],
     createdAt: new Date('2025-06-15'),
     user: '688f73033708e0cb89ef4adf'
   },
@@ -50,7 +52,10 @@ const seedRecepti = [
     ],
     vreme: "10min",
     slika: "https://piovariations.cdn.podravka.net/7ad252fc-633b-11f0-bf44-46b1c4d84b92/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Ručak","Zdrav obrok"],
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b2'), 
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b8'), 
+    ],
     createdAt: new Date('2025-06-15'),
     user: '688f733e3708e0cb89ef4ae2'
   },
@@ -80,7 +85,9 @@ const seedRecepti = [
     ],
     vreme: "95min",
     slika: "https://piovariations.cdn.podravka.net/893116e0-62fe-11f0-8e4a-46b1c4d84b92/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1024x768-f2b21802-64bc-11eb-a115-0242ac130010.webp",
-    kategorija: ["Dezert"],
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92bb'), 
+    ],
     createdAt: new Date('2025-06-15'),
     user: '688f733e3708e0cb89ef4ae2'
 
@@ -100,7 +107,9 @@ const seedRecepti = [
     ],
     vreme: "30 minuta",
     slika: "https://piovariations.cdn.podravka.net/f5387772-610d-11eb-be50-0242ac12001b/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Ručak"],
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b2'), 
+    ],
     createdAt: new Date('2025-06-15'),
     user: '688f733e3708e0cb89ef4ae2'
   },
@@ -125,7 +134,10 @@ const seedRecepti = [
     ],
     vreme: "45 minuta",
     slika: "https://piovariations.cdn.podravka.net/f47b22f8-610d-11eb-88fa-0242ac12001d/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1024x768-f2b21802-64bc-11eb-a115-0242ac130010.webp",
-    kategorija: ["Ručak","Večera"],
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b2'), 
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b5'), 
+    ],
     createdAt: new Date('2025-08-13'),
     user: '688f733e3708e0cb89ef4ae2'
   },
@@ -145,7 +157,10 @@ const seedRecepti = [
     ],
     vreme: "60 minuta",
     slika: "https://piovariations.cdn.podravka.net/e4d7df6c-610d-11eb-8e3b-0242ac120016/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1024x768-f2b21802-64bc-11eb-a115-0242ac130010.webp",
-    kategorija: ["Ručak","Večera"],
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b2'), 
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b5'), 
+    ],
     createdAt: new Date('2025-07-18'),
     user: '688f73033708e0cb89ef4adf'
   },
@@ -173,7 +188,11 @@ const seedRecepti = [
     ],
     vreme: "60 minuta",
     slika: "https://piovariations.cdn.podravka.net/b21dd7aa-63bc-11eb-b57b-0242ac12001a/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Ručak","Večera","Zdrav obrok"],
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b2'), 
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b5'), 
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b8'), 
+    ],
     createdAt: new Date('2025-07-04'),
     user: '688f73543708e0cb89ef4ae7'
   },
@@ -198,7 +217,10 @@ const seedRecepti = [
     ],
     vreme: "45 minuta",
     slika: "https://piovariations.cdn.podravka.net/82ce3d5e-6421-11eb-ae21-0242ac12002a/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Ručak"],
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92b2'), 
+
+    ],
     createdAt: new Date('2025-06-15'),
     user: '688f733e3708e0cb89ef4ae2'
   },
@@ -222,7 +244,11 @@ const seedRecepti = [
   ],
   vreme: "40 minuta",
   slika: "https://piovariations.cdn.podravka.net/c328da32-5677-11ec-a312-ae48ed498d44/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-  kategorija: ["Ručak","Večera","Zdrav obrok"],
+  kategorija: [
+    new mongoose.Types.ObjectId('68a24cfbd6329213330d92b2'), 
+    new mongoose.Types.ObjectId('68a24cfbd6329213330d92b5'), 
+    new mongoose.Types.ObjectId('68a24cfbd6329213330d92b8'), 
+    ],
   createdAt: new Date('2025-06-15'),
   user: '688f73033708e0cb89ef4adf'
 
@@ -249,7 +275,11 @@ const seedRecepti = [
   ],
   vreme: "30 minuta",
   slika: "https://piovariations.cdn.podravka.net/f47dfadc-610d-11eb-9d2b-0242ac120034/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-  kategorija: ["Doručak","Večera","Zdrav obrok"],
+  kategorija: [
+    new mongoose.Types.ObjectId('68a24cfbd6329213330d92b2'), 
+    new mongoose.Types.ObjectId('68a24cfbd6329213330d92b5'), 
+    new mongoose.Types.ObjectId('68a24cfbd6329213330d92b8'), 
+  ],
   createdAt: new Date('2025-08-10'),
   user: '688f73543708e0cb89ef4ae7'
 },
@@ -270,8 +300,10 @@ const seedRecepti = [
     ],
     vreme: "30 minuta",
     slika: "https://piovariations.cdn.podravka.net/97d4bd42-1469-11ec-af9c-d627f6be7959/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Doručak"],
-      createdAt: new Date('2025-08-12'),
+    kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92af'), 
+    ],
+    createdAt: new Date('2025-08-12'),
     user: "688f73543708e0cb89ef4ae7"
 },
 {
@@ -284,83 +316,66 @@ const seedRecepti = [
     "Vegeta",
     "1 kašika naseckanog peršuna"
     ],
-priprema: [
-  "Avokado razrežite po dužini, odstranite košticu i kašikom izvadite mesnati deo.",
-  "Od njega napravite pire i umešajte limunov sok, maslinovo ulje, so i peršin.",
-  "Namaz servirajte u ljusci avokada."
-],
-vreme: "20 minuta",
-slika: "https://piovariations.cdn.podravka.net/bbe17944-6403-11eb-91d3-0242ac12005a/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-kategorija: ["Doručak"],
-createdAt: new Date('2025-08-12'),
-user: "688f73543708e0cb89ef4ae7"
+  priprema: [
+    "Avokado razrežite po dužini, odstranite košticu i kašikom izvadite mesnati deo.",
+    "Od njega napravite pire i umešajte limunov sok, maslinovo ulje, so i peršin.",
+    "Namaz servirajte u ljusci avokada."
+  ],
+  vreme: "20 minuta",
+  slika: "https://piovariations.cdn.podravka.net/bbe17944-6403-11eb-91d3-0242ac12005a/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
+  kategorija: [
+    new mongoose.Types.ObjectId('68a24cfbd6329213330d92af'), 
+  ],
+  createdAt: new Date('2025-08-12'),
+  user: "688f73543708e0cb89ef4ae7"
 
 },
 {
-    naziv: "Francuski topli sendviči",
-    sastojci: [
-    "20g maslaca",
-    "So i biber",
-    "200ml mleka",
-    "20g oštrog brašna",
-    "4 jaja",
-    "8 parčeta tost hleba",
-    "2 kašike ulja",
-    "50g sira",
-    "50g šunke",
-    "50g Kraškog vrata",
-    "30g  gongonzole",
-    ],
-    priprema: [
-    "U manjoj posudi na srednjem plamenu rastopiti maslac, dodati brašno i miješati oko 2 minuta, zaprska mora ostati svetla.",
-    "Doliti hladno mlieko i dobro promješati da se ne stvore grudvice.",
+  naziv: "Francuski topli sendviči",
+  sastojci: [
+  "20g maslaca",
+  "So i biber",
+  "200ml mleka",
+  "20g oštrog brašna",
+  "4 jaja",
+  "8 parčeta tost hleba",
+  "2 kašike ulja",
+  "50g sira",
+  "50g šunke",
+  "50g Kraškog vrata",
+  "30g  gongonzole",
+  ],
+  priprema: [
+  "U manjoj posudi na srednjem plamenu rastopiti maslac, dodati brašno i miješati oko 2 minuta, zaprska mora ostati svetla.",
+  "Doliti hladno mlieko i dobro promješati da se ne stvore grudvice.",
 
-    "Posoliti, zapapriti po ukusu i dodati prstohvat-dva ribanog muškatnog oraščića te i dalje lagano miješati par minuta da bešamel dobije blagu kremastu masu.",
-    "U zdjeli razmutiti 2 jaja, dodati prstohvat soli i razrijediti sa preostalim mlijekom,Kriske kruha umociti u razmućenu smjesu i blago propeci s obje strane na predhodno zagrijanoj tavici s uljem.",
-    "4 kriske kruha premazati bešamelom, posipati s malo naribanog sira, prekriti šunkom + vratinom i zlicom bešamela, poklopiti s preostalim kruhom..",
-    "Svaki sendvic premazati bešamelom, dodati ostatak naribanog sira i staviti na grill zicu oblozenu folijom ili pek papirom.. peci u pecnici odprilike 10 minuta pazeci da ne potamne.",
-    "Gorgonzolu izmrviti na malo vece komadice i ispeci 2 jaja na oko..",
-    "Na 2 sendviča staviti gorgonzolu ili sir po zelji (to je 'Croc-Monsieur') vratiti ih u vrucu pecnicu na 2 minute da se sir otopi.. na druge položiti po jedno jaje na oko ( eto 'Croc-Madame') i nasjeckani zeleni zacin.",
+  "Posoliti, zapapriti po ukusu i dodati prstohvat-dva ribanog muškatnog oraščića te i dalje lagano miješati par minuta da bešamel dobije blagu kremastu masu.",
+  "U zdjeli razmutiti 2 jaja, dodati prstohvat soli i razrijediti sa preostalim mlijekom,Kriske kruha umociti u razmućenu smjesu i blago propeci s obje strane na predhodno zagrijanoj tavici s uljem.",
+  "4 kriske kruha premazati bešamelom, posipati s malo naribanog sira, prekriti šunkom + vratinom i zlicom bešamela, poklopiti s preostalim kruhom..",
+  "Svaki sendvic premazati bešamelom, dodati ostatak naribanog sira i staviti na grill zicu oblozenu folijom ili pek papirom.. peci u pecnici odprilike 10 minuta pazeci da ne potamne.",
+  "Gorgonzolu izmrviti na malo vece komadice i ispeci 2 jaja na oko..",
+  "Na 2 sendviča staviti gorgonzolu ili sir po zelji (to je 'Croc-Monsieur') vratiti ih u vrucu pecnicu na 2 minute da se sir otopi.. na druge položiti po jedno jaje na oko ( eto 'Croc-Madame') i nasjeckani zeleni zacin.",
 
+  ],
+  vreme: "30 minuta",
+  slika: "https://piovariations.cdn.podravka.net/b67fb3ae-63d5-11eb-9cd6-0242ac120027/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
+  kategorija: [
+      new mongoose.Types.ObjectId('68a24cfbd6329213330d92af'), 
     ],
-    vreme: "30 minuta",
-    slika: "https://piovariations.cdn.podravka.net/b67fb3ae-63d5-11eb-9cd6-0242ac120027/v/f2b1f6a6-64bc-11eb-b6c2-0242ac130010/1600x1200-f2b21938-64bc-11eb-9498-0242ac130010.webp",
-    kategorija: ["Doručak"],
-      createdAt: new Date('2025-08-12'),
-    user: "688f73543708e0cb89ef4ae7"
+  createdAt: new Date('2025-08-12'),
+  user: "688f73543708e0cb89ef4ae7"
 }
 ];
-
-
-async function seeduj() {
+async function seedDB() {
   try {
-    await Recipe.deleteMany();
-
-    // Direktno ubacujemo seedRecepti onako kako jesu (user može biti '' ili null)
+    console.log('Seed pokrenut...');
+    await Recipe.deleteMany({}); // Ako želiš prvo očistiti ovu kolekciju
     await Recipe.insertMany(seedRecepti);
-
-    console.log("Recepti uspešno ubačeni u bazu.");
-  } catch (error) {
-    console.error("Greška pri seedovanju:", error);
-  } finally {
+    console.log('Seed završen!');
     mongoose.disconnect();
+  } catch (err) {
+    console.error(err);
   }
 }
 
-
-seeduj();
-
-// async function ubaciRecepte() {
-//   try {
-//     await Recept.deleteMany(); // obriši prethodne ako ih ima
-//     await Recept.insertMany(recepti);
-//     console.log("Recepti uspešno ubačeni u bazu.");
-//     mongoose.disconnect();
-//   } catch (error) {
-//     console.error("Greška pri ubacivanju:", error);
-//   }
-// }
-
-
-
-// ubaciRecepte();
+seedDB();

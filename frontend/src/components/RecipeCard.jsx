@@ -20,6 +20,14 @@ const RecipeCard = ({ recept }) => {
       )}
       <div className="card-content">
         <h4>{recept.naziv}</h4>
+        
+        {/* Dodajemo prikaz kategorija */}
+        {recept.kategorija && recept.kategorija.length > 0 && (
+          <p className="categories">
+            <strong>Kategorija:</strong> {recept.kategorija.map(k => k.naziv).join(', ')}
+          </p>
+        )}
+
         <button onClick={() => toggleSave(recept._id)} className="save-heart-btn">
           {saved.includes(recept._id) ? <FaHeart /> : <FaRegHeart />}
         </button>

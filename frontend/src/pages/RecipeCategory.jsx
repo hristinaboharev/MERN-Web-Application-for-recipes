@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../styles/RecipeCategory.css';
-import RecipeCard from '../components/RecipeCard'; // importovanje kartice
+import RecipeCard from '../components/RecipeCard';
 
 const ReceptiKategorija = () => {
   const { kategorija } = useParams();
@@ -10,27 +10,19 @@ const ReceptiKategorija = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/recepti')
-      .then(res => {
-        const normalize = str => 
-          str
-            .normalize("NFD")                     //razdvaja slova (npr. 'č' postaje 'c')
-            .replace(/[\u0300-\u036f]/g, "")     //uklanja sve dijakritike (accent-e)
-            .toLowerCase()                        
-            .trim();                              
+    const fetchRecepti = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/recepti/kategorija/${encodeURIComponent(kategorija)}`);
+        setRecepti(res.data);
+      } catch (err) {
+        console.error(err);
+        setRecepti([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-
-        const filtrirani = res.data.filter(r => {
-          if (Array.isArray(r.kategorija)) {
-            return r.kategorija.some(k => normalize(k) === normalize(kategorija));
-          }
-          return normalize(r.kategorija) === normalize(kategorija);
-        });
-
-        setRecepti(filtrirani);
-      })
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
+    fetchRecepti();
   }, [kategorija]);
 
   return (

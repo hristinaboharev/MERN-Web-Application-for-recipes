@@ -1,33 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
-import Layout from './components/Layout';
-import Login from './Login';
-import Signup from './Signup';
-import Recepti from './pages/Recipes';
-import ReceptDetalji from './pages/RecipeDetails';
-import ReceptiKategorija from './pages/RecipeCategory';
-import Namirnice from './pages/IngredientSearch';
-import Favorites from './pages/Favorites';
-import UserProfile from './pages/UserProfile';
-import CreateRecipe from './pages/CreateRecipe';
+import Layout from "./components/Layout";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Recepti from "./pages/Recipes";
+import ReceptDetalji from "./pages/RecipeDetails";
+import ReceptiKategorija from "./pages/RecipeCategory";
+import Namirnice from "./pages/IngredientSearch";
+import Favorites from "./pages/Favorites";
+import UserProfile from "./pages/UserProfile";
+import CreateRecipe from "./pages/CreateRecipe";
 
-import { jwtDecode } from 'jwt-decode';
-import './App.css';
-import { SavedProvider } from './components/SavedContext';
-
+import { jwtDecode } from "jwt-decode";
+import "./App.css";
+import { SavedProvider } from "./components/SavedContext";
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [username, setUsername] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        
+
         setUsername(decoded.username);
         setUserId(decoded.id || decoded.userId || decoded._id); // proveri šta je u tokenu
       } catch {
@@ -41,17 +45,17 @@ function App() {
   }, [token]);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setToken(null);
     setUsername(null);
   };
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (
@@ -74,20 +78,34 @@ function App() {
           >
             <Route index element={<Recepti />} />
             <Route path="namirnice" element={<Namirnice />} />
-            <Route path="recepti/kategorija/:kategorija" element={<ReceptiKategorija />} />
+            <Route
+              path="recepti/kategorija/:kategorija"
+              element={<ReceptiKategorija />}
+            />
             <Route path="recepti/:id" element={<ReceptDetalji />} />
-            <Route path="omiljeno" element={token ? <Favorites /> : <Navigate to="/login" />} />
+            <Route
+              path="omiljeno"
+              element={token ? <Favorites /> : <Navigate to="/login" />}
+            />
 
             {/* Link ka profilu korisnika */}
             <Route path="/users/:userId" element={<UserProfile />} />
           </Route>
 
-          <Route path="/recept" element={token ? <CreateRecipe /> : <Navigate to="/login" />} />
-
+          <Route
+            path="/recept"
+            element={token ? <CreateRecipe /> : <Navigate to="/login" />}
+          />
 
           {/* Login/signup bez layout-a */}
-          <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />} />
-          <Route path="/signup" element={token ? <Navigate to="/" /> : <Signup />} />
+          <Route
+            path="/login"
+            element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />}
+          />
+          <Route
+            path="/signup"
+            element={token ? <Navigate to="/" /> : <Signup />}
+          />
 
           <Route path="*" element={<h2>Stranica nije pronađena</h2>} />
         </Routes>

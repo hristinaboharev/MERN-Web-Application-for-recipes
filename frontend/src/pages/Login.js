@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import './AuthForm.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "../styles/AuthForm.css";
 
 const Login = ({ onLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setErrorMessage("");
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
         email,
         password,
       });
 
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem("token", res.data.token);
       if (onLogin) onLogin(res.data.token);
-      navigate('/');
+      navigate("/");
     } catch (err) {
-      const msg = err.response?.data?.message || 'Greška na serveru';
+      const msg = err.response?.data?.message || "Greška na serveru";
       setErrorMessage(msg);
     }
   };
@@ -33,7 +33,9 @@ const Login = ({ onLogin }) => {
       <div className="auth-box">
         <h2 className="auth-title">Prijava</h2>
 
-        {errorMessage && <div className="auth-message error">{errorMessage}</div>}
+        {errorMessage && (
+          <div className="auth-message error">{errorMessage}</div>
+        )}
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <label>Email</label>

@@ -1,44 +1,44 @@
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import Slider from 'react-slick';
-import { PrevArrow, NextArrow } from '../components/CustomArrows';
-import { Link, useParams } from 'react-router-dom';
-import '../styles/Recipes.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { SavedContext } from '../components/SavedContext';
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import Slider from "react-slick";
+import { useParams } from "react-router-dom";
+import "../styles/Recipes.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
+import Pagination from "@mui/material/Pagination";
 
-import Divider from '@mui/material/Divider';
-import Chip from '@mui/material/Chip'; 
-import Pagination from '@mui/material/Pagination';
+import { SavedContext } from "../components/SavedContext";
+import RecipeCard from "../components/RecipeCard";
+import { PrevArrow, NextArrow } from "../components/CustomArrows";
 
 const Recepti = () => {
   const { kategorija } = useParams();
   const [recepti, setRecepti] = useState([]);
   const { saved, toggleSave } = useContext(SavedContext);
 
-  // Paginacija za grid
+  // Paginacija
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
+  // Fetch recepata iz backend-a
   useEffect(() => {
-    let url = 'http://localhost:5000/api/recepti';
-    if (kategorija) {
-      url += `?kategorija=${kategorija}`;
-    }
+    let url = "http://localhost:5000/api/recepti";
+    if (kategorija) url += `?kategorija=${kategorija}`;
 
-    axios.get(url)
-      .then(res => setRecepti(res.data))
-      .catch(err => console.error(err));
+    axios
+      .get(url)
+      .then((res) => setRecepti(res.data))
+      .catch((err) => console.error(err));
   }, [kategorija]);
 
-  // Filtriramo samo one sa createdAt u poslednjih 10 dana za slider
+  // Slider - najnoviji recepti u poslednjih 10 dana
   const danas = new Date();
   const desetDanaUnazad = new Date();
   desetDanaUnazad.setDate(danas.getDate() - 10);
 
-  const najnovijiRecepti = recepti.filter(r => {
+  const najnovijiRecepti = recepti.filter((r) => {
     const datum = new Date(r.createdAt);
     return datum >= desetDanaUnazad && datum <= danas;
   });
@@ -49,18 +49,7 @@ const Recepti = () => {
   const currentRecepti = recepti.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(recepti.length / itemsPerPage);
 
-  // Funkcija koja vraća pun URL slike, bilo da je pun link ili relativna putanja
-  const getSlikaUrl = (putanja) => {
-    if (!putanja) return '/default-image.jpg';
-
-    if (putanja.startsWith('http://') || putanja.startsWith('https://')) {
-      return putanja;
-    }
-
-    return `http://localhost:5000${putanja}`;
-  };
-
-  const settings = {
+  const sliderSettings = {
     dots: false,
     infinite: false,
     speed: 500,
@@ -69,67 +58,54 @@ const Recepti = () => {
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     responsive: [
-      { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 2 }},
-      { breakpoint: 500, settings: { slidesToShow: 1, slidesToScroll: 1 }}
-    ]
+      { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+      { breakpoint: 500, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+    ],
   };
 
   return (
     <div className="containerRecipe">
-
-      <div 
-        className="header-container" 
+      {/* Header sa pozadinom */}
+      <div
+        className="header-container"
         style={{ backgroundImage: `url(/images/pozadina.jpg)` }}
       >
         <div className="header-content">
-          <h1>Tvoj recept, naša inspiracija </h1>
+          <h1>Tvoj recept, naša inspiracija</h1>
           <h2>gde se tradicija i mašta sreću</h2>
         </div>
-
-        {/* mala slika hrane preko pozadine */}
-        <img 
-          src="/images/hamburger.png" 
-          alt="Hrana" 
+        <img
+          src="/images/hamburger.png"
+          alt="Hrana"
           className="food-overlay"
         />
       </div>
 
-      {/* Grid sa svim receptima */}
+      {/* Grid sa receptima */}
       <h2>Svi recepti</h2>
       <div className="recipe-grid">
         {currentRecepti.length > 0 ? (
-          currentRecepti.map(recept => (
-            <div key={recept._id} className="recipe-card">
-              {recept.slika ? (
-                <img src={getSlikaUrl(recept.slika)} alt={recept.naziv} className="card-img" />
-              ) : (
-                <div className="card-img-placeholder">Nema slike</div>
-              )}
-              <div className="card-content">
-                <h4>{recept.naziv}</h4>
-                <button onClick={() => toggleSave(recept._id)} className="save-heart-btn">
-                  {saved.includes(recept._id) ? <FaHeart /> : <FaRegHeart />}
-                </button>
-                <p><strong>⏱ Vreme:</strong> {recept.vreme}</p>
-                <Link to={`/recepti/${recept._id}`} className="show-more-btn">Prikaži više</Link>
-              </div>
-            </div>
+          currentRecepti.map((recept) => (
+            <RecipeCard key={recept._id} recept={recept} />
           ))
         ) : (
           <p className="text-center">Nema dostupnih recepata.</p>
         )}
       </div>
 
-      <Pagination
-        count={totalPages}
-        page={currentPage}
-        onChange={(event, page) => setCurrentPage(page)}
-        variant="outlined"
-        color="primary"
-        showFirstButton
-        showLastButton
-        sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}
-      />
+      {/* Paginacija */}
+      {totalPages > 1 && (
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={(event, page) => setCurrentPage(page)}
+          variant="outlined"
+          color="primary"
+          showFirstButton
+          showLastButton
+          sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}
+        />
+      )}
 
       {/* Slider najnovijih recepata */}
       <div style={{ marginTop: 40 }}>
@@ -137,39 +113,17 @@ const Recepti = () => {
           <Chip label="Najnoviji recepti" />
         </Divider>
         {najnovijiRecepti.length > 0 ? (
-          <Slider {...settings}>
-            {najnovijiRecepti.map(recept => {
-              const datum = new Date(recept.createdAt);
-              const datumFormatirano = datum.toLocaleDateString('sr-RS'); // dd.mm.yyyy
-
-              return (
-                <div key={recept._id} className="recipe-card">
-                  {recept.slika ? (
-                    <img src={getSlikaUrl(recept.slika)} alt={recept.naziv} className="card-img" />
-                  ) : (
-                    <div className="card-img-placeholder">Nema slike</div>
-                  )}
-                  <div className="card-content">
-                    <h4>{recept.naziv}</h4>
-                    <button onClick={() => toggleSave(recept._id)} className="save-heart-btn">
-                      {saved.includes(recept._id) ? <FaHeart /> : <FaRegHeart />}
-                    </button>
-                    <p><strong>⏱ Vreme:</strong> {recept.vreme}</p>
-                    <p><strong>📅 Datum:</strong> {datumFormatirano}</p>
-
-                    <Link to={`/recepti/${recept._id}`} className="show-more-btn">
-                      Prikaži više
-                    </Link>
-                  </div>
-                </div>
-              );
-            })}
+          <Slider {...sliderSettings}>
+            {najnovijiRecepti.map((recept) => (
+              <RecipeCard key={recept._id} recept={recept} />
+            ))}
           </Slider>
         ) : (
-          <p className="text-center">Nema recepata kreiranih u poslednjih 10 dana.</p>
+          <p className="text-center">
+            Nema recepata kreiranih u poslednjih 10 dana.
+          </p>
         )}
       </div>
-
     </div>
   );
 };

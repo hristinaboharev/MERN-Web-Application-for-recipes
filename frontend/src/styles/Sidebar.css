@@ -144,7 +144,7 @@
 .user-info.dropdown .dropdown-content {
   display: none;
   position: absolute;
-  bottom: 100%; /* iznad korisničkog dela */
+  bottom: 38px; /* iznad korisničkog dela */
   left: 0;
   background-color: var(--sidebar-bg, #748D92);
   border-radius: 6px;
@@ -158,7 +158,7 @@
 /* Linkovi u dropdown meniju */
 .user-info.dropdown .dropdown-content a {
   color: var(--text-color, white);
-  padding: 8px 12px;
+  padding: 8px 80px 8px 12px;
   text-decoration: none;
   display: block;
   font-weight: 600;

@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/RecipeDetails.css';
-import { CgProfile } from "react-icons/cg";
 import useImage from '../hooks/useImage';
+
+import { CgProfile } from "react-icons/cg";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Divider from '@mui/material/Divider';
 
 const ReceptDetalji = () => {
   const { id } = useParams();
@@ -53,7 +56,7 @@ const ReceptDetalji = () => {
         <p>Datum kreiranja: {formatDatum(recept.createdAt)}</p>
         {recept.user && recept.user.username ? (
           <p className="autor">
-            <CgProfile className="icon-profile" />
+            <AccountCircleIcon className="icon-profile" />
             <Link to={`/users/${recept.user._id}`} className="autor-link">
               {recept.user.username}
             </Link>
@@ -62,6 +65,8 @@ const ReceptDetalji = () => {
           <p>Autor: Nepoznat</p>
         )}
       </div>
+
+      <Divider sx={{ my: 2 }} />  
 
       <div className="flex-row mb-4">
         <div>

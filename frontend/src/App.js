@@ -63,9 +63,7 @@ function App() {
       <Router>
         <Routes>
           {/* Layout sa sidebarom za sve rute */}
-          <Route
-            path="/"
-            element={
+          <Route path="/" element={
               <Layout
                 token={token}
                 username={username}
@@ -76,36 +74,20 @@ function App() {
               />
             }
           >
-            <Route index element={<Recepti />} />
-            <Route path="namirnice" element={<Namirnice />} />
-            <Route
-              path="recepti/kategorija/:kategorija"
-              element={<ReceptiKategorija />}
-            />
-            <Route path="recepti/:id" element={<ReceptDetalji />} />
-            <Route
-              path="omiljeno"
-              element={token ? <Favorites /> : <Navigate to="/login" />}
-            />
+          <Route index element={<Recepti />} />
+          <Route path="namirnice" element={<Namirnice />} />
+          <Route path="recepti/kategorija/:kategorija" element={<ReceptiKategorija />} />
+          <Route path="recepti/:id" element={<ReceptDetalji />} />
+          <Route path="omiljeno" element={token ? <Favorites /> : <Navigate to="/login" />}/>
 
-            {/* Link ka profilu korisnika */}
-            <Route path="/users/:userId" element={<UserProfile />} />
-          </Route>
+          {/* Link ka profilu korisnika */}
+          <Route path="/users/:userId" element={<UserProfile />} /> </Route>
 
-          <Route
-            path="/recept"
-            element={token ? <CreateRecipe /> : <Navigate to="/login" />}
-          />
+          <Route path="/recept" element={token ? <CreateRecipe /> : <Navigate to="/login" />}/>
 
           {/* Login/signup bez layout-a */}
-          <Route
-            path="/login"
-            element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />}
-          />
-          <Route
-            path="/signup"
-            element={token ? <Navigate to="/" /> : <Signup />}
-          />
+          <Route path="/login" element={token ? <Navigate to="/" /> : <Login onLogin={setToken} />}/>
+          <Route path="/signup"  element={token ? <Navigate to="/" /> : <Signup />} />
 
           <Route path="*" element={<h2>Stranica nije pronađena</h2>} />
         </Routes>

@@ -1,18 +1,18 @@
 .user-profile-container {
-  /* padding: 0 20px; */
   color: var(--text);
   padding: 20px;
 }
 
+/* Username box sa profil ikonom i brojem recepata */
 .username-box {
   display: flex;
-
+  align-items: center;
   margin-top: 50px;
   padding: 30px;
   text-align: center;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   font-size: 2rem;
   font-weight: 700;
   color: var(--text);
@@ -26,11 +26,41 @@
   padding: 5px 15px 0 0;
 }
 
-.username-box h2{
-    padding-top: 20px;
+.username-box h2 {
+  padding-top: 20px;
 }
 
+.total-recipes {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 5px;
+  text-align: center;
+}
 
+/* Dugme za aktivaciju režima brisanja */
+.delete-mode-toggle {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.delete-mode-toggle button {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.delete-mode-toggle button:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}
+
+/* Grid recepata */
 .recipes-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* TAČNO TRI kolone */
@@ -38,6 +68,13 @@
   justify-items: center;
 }
 
+/* Wrapper za recept sa pozicioniranom ikonon za brisanje */
+.recipe-card-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Kartica recepta */
 .recipe-cardP {
   border: none !important;
   min-height: unset !important;
@@ -58,6 +95,9 @@
 .recipe-cardP:hover {
   transform: scale(1.05);
 }
+
+
+/* Slika recepta */
 .recipe-image {
   display: block;
   width: 100%;
@@ -65,9 +105,9 @@
   object-fit: cover;
 }
 
+/* Ime recepta */
 .recipe-name {
   position: absolute;
-
   top: 89%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -81,3 +121,43 @@
   backdrop-filter: blur(4px);
   box-sizing: border-box;
 }
+
+/* Dugme za brisanje recepta */
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(231, 76, 60, 0.85);
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.delete-btn svg{
+  color: #ffffff;
+}
+.delete-btn:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+/* No image placeholder */
+.no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: #f0f0f0;
+  color: #999;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 12px;
+}
+
+

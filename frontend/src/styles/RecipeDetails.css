@@ -47,8 +47,7 @@ h2.text-center {
   text-decoration: underline;
 }
 
-.icon-profile {
-  font-size: 2rem;
+.icon-profile{
   color: var(--link);
   vertical-align: middle;
 }

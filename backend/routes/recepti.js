@@ -158,4 +158,24 @@ router.get('/najnoviji', async (req, res) => {
   }
 });
 
+
+// DELETE - obriši recept po ID samo ako je vlasnik
+router.delete('/:id', authenticateToken, async (req, res) => {
+  try {
+    const recept = await Recept.findById(req.params.id);
+    if (!recept) return res.status(404).json({ message: 'Recept nije pronađen' });
+
+    // proveri da li je trenutno ulogovani korisnik vlasnik recepta
+    if (recept.user.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'Nemate dozvolu da obrišete ovaj recept' });
+    }
+
+    await Recept.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Recept obrisan' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Greška pri brisanju recepta' });
+  }
+});
+
 module.exports = router;

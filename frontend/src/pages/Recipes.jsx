@@ -5,9 +5,13 @@ import { useParams } from "react-router-dom";
 import "../styles/Recipes.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import Pagination from "@mui/material/Pagination";
+
+
 
 import { SavedContext } from "../components/SavedContext";
 import RecipeCard from "../components/RecipeCard";
@@ -16,6 +20,7 @@ import { PrevArrow, NextArrow } from "../components/CustomArrows";
 const Recepti = () => {
   const { kategorija } = useParams();
   const [recepti, setRecepti] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const { saved, toggleSave } = useContext(SavedContext);
 
   // Paginacija

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Sidebar.css';
 
-
-//importovanje React ikonice za dark/light mode
-import { FaRegSun } from "react-icons/fa";
-import { FaRegMoon } from "react-icons/fa";
-
+// MUI ikonice za dark/light mode
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 import Avatar from '@mui/material/Avatar';
 
@@ -78,7 +76,7 @@ const Sidebar = ({ token, onLogout, username, userId }) => {
 
       <div className="auth-links">
         <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
-          {theme === 'dark' ? <FaRegSun size={20} /> : <FaRegMoon size={20} />}
+          {theme === 'dark' ? <LightModeIcon  size={20} /> : <DarkModeIcon  size={20} />}
         </button>
 
         {token ? (

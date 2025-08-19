@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { SavedContext } from "./SavedContext";
 import useImage from "../hooks/useImage";
+
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const RecipeCard = ({ recept }) => {
   const { saved, toggleSave } = useContext(SavedContext);
@@ -20,19 +22,36 @@ const RecipeCard = ({ recept }) => {
       )}
       <div className="card-content">
         <h4>{recept.naziv}</h4>
-        
+
         {/* Dodajemo prikaz kategorija */}
         {recept.kategorija && recept.kategorija.length > 0 && (
           <p className="categories">
-            <strong>Kategorija:</strong> {recept.kategorija.map(k => k.naziv).join(', ')}
+            <strong>Kategorija:</strong>{" "}
+            {recept.kategorija.map((k) => k.naziv).join(", ")}
           </p>
         )}
 
-        <button onClick={() => toggleSave(recept._id)} className="save-heart-btn">
-          {saved.includes(recept._id) ? <FaHeart /> : <FaRegHeart />}
+        <button
+          onClick={() => toggleSave(recept._id)}
+          className="save-heart-btn"
+        >
+          {saved.includes(recept._id) ? (
+            <FavoriteIcon style={{ color: "red" }} />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </button>
-        {recept.vreme && <p><strong>⏱ Vreme:</strong> {recept.vreme}</p>}
-        {datum && <p><strong>📅 Datum:</strong> {datumFormatirano}</p>}
+
+        {recept.vreme && (
+          <p>
+            <strong>⏱ Vreme:</strong> {recept.vreme}
+          </p>
+        )}
+        {datum && (
+          <p>
+            <strong>📅 Datum:</strong> {datumFormatirano}
+          </p>
+        )}
         <Link to={`/recepti/${recept._id}`} className="show-more-btn">
           Prikaži više
         </Link>

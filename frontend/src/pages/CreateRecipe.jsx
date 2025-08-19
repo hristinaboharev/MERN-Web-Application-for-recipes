@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/CreateRecipe.css';
 
+import Divider from '@mui/material/Divider';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 const CreateRecipe = () => {
   const [naslov, setNaslov] = useState('');
   const [slika, setSlika] = useState(null);
@@ -38,7 +41,11 @@ const CreateRecipe = () => {
     setLoading(true);
 
     const token = localStorage.getItem('token');
-    if (!token) { alert('Morate biti ulogovani.'); setLoading(false); return; }
+    if (!token) { 
+      alert('Morate biti ulogovani.');
+      setLoading(false); 
+      return; 
+    }
 
     try {
       const formData = new FormData();
@@ -48,16 +55,13 @@ const CreateRecipe = () => {
       formData.append('kategorija', JSON.stringify(odabraneKategorije));
       if (slika) formData.append('slika', slika);
 
-      const res = await fetch('http://localhost:5000/api/recepti', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${token}` },
-        body: formData
+      // eslint-disable-next-line no-unused-vars
+      const res = await axios.post('http://localhost:5000/api/recepti', formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
       });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.message || 'Greška pri slanju recepta');
-      }
 
       alert('Recept dodat!');
       setNaslov('');
@@ -66,24 +70,31 @@ const CreateRecipe = () => {
       setPriprema(['']);
       setOdabraneKategorije([]);
     } catch (err) {
-      alert(err.message);
+      console.error(err);
+      alert(err.response?.data?.message || 'Greška pri slanju recepta');
     } finally { setLoading(false); }
   };
 
   return (
     <div className="create-recipe-container">
       <div className="top-button-container">
+        <button type="button" className="back-btn" onClick={() => window.history.back()}>
+          <ArrowBackIcon />
+        </button>
+
         <button type="submit" className="submit-btn-top-right" onClick={handleSubmit}>
           {loading ? 'Čuvanje...' : 'Sačuvaj recept'}
         </button>
       </div>
 
       <form className="create-recipe-grid">
-
         <div className="left-column">
           <label>Naslov recepta</label>
           <input type="text" placeholder="Naziv recepta" value={naslov} onChange={e => setNaslov(e.target.value)} required />
-          <label>Dodaj glavnu sliku</label>
+
+          <Divider sx={{ my: 2 }} />  
+          
+          <label>Dodaj sliku</label>
           <input type="file" accept="image/*" onChange={handleImageChange} />
           {slika && <img src={URL.createObjectURL(slika)} alt="preview" className="img-preview" />}
         </div>
@@ -98,6 +109,8 @@ const CreateRecipe = () => {
           ))}
           <button type="button" onClick={dodajSastojak}>Dodaj sastojak</button>
 
+          <Divider sx={{ my: 2 }} />  
+          
           <label>Priprema (koraci)</label>
           {priprema.map((p, i) => (
             <div key={i} className="sastojak-row">
@@ -118,14 +131,18 @@ const CreateRecipe = () => {
                   value={k._id}
                   checked={odabraneKategorije.includes(k._id)}
                   onChange={e => {
-                    if (e.target.checked) setOdabraneKategorije([...odabraneKategorije, k._id]);
-                    else setOdabraneKategorije(odabraneKategorije.filter(id => id !== k._id));
+                    if (e.target.checked)
+                      setOdabraneKategorije([...odabraneKategorije, k._id]);
+                    else
+                      setOdabraneKategorije(odabraneKategorije.filter(id => id !== k._id));
                   }}
                 />
-                {k.naziv}
+                <span>{k.naziv}</span>
               </label>
             ))}
           </div>
+
+          <Divider sx={{ my: 2 }} />  
 
           <div className="selected-categories">
             {odabraneKategorije.map(id => {

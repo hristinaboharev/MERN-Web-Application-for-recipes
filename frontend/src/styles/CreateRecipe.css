@@ -5,12 +5,28 @@
   background: #f4f6f8;
 }
 
-/* Dugme skroz gore desno */
+/* Dugmad za save i back */
 .top-button-container {
-  text-align: right;
-  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+/* Dugme za nazad */
+.back-btn {
+  background-color: #ebe9e9 !important;
+  border: none;
+  border-radius: 50% !important;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 }
 
+
+
+/* Dugme za čuvanje  */
 .submit-btn-top-right {
   padding: 8px 16px;
   background: #27ae60;
@@ -18,21 +34,19 @@
   border: none;
   border-radius: 8px;
   font-weight: 600;
-  cursor: pointer;
+  /* cursor: pointer; */
   font-size: 0.95rem;
-  transition: background 0.2s, transform 0.2s;
 }
 
-.submit-btn-top-right:hover {
-  background: #219150;
-  transform: translateY(-2px);
-}
+
+
 
 /* Grid tri kolone */
 .create-recipe-grid {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 25px;
+  height: 500px;
 }
 
 /* Kolone */
@@ -135,36 +149,42 @@ button[type="button"]:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Checkbox lista modernizovana */
+
+/* Container */
 .categories-checkbox {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 8px;
 }
 
-.category-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 8px;
-  transition: background-color 0.2s ease;
-}
-
-.category-checkbox:hover {
-  background-color: #f0f0f0;
-}
-
-/* Stil checkbox input-a sakriven, koristi pseudo */
+/* Sakrij defaultni checkbox */
 .category-checkbox input[type="checkbox"] {
-  accent-color: #8ed871;
-
-  width: 18px;
-  height: 18px;
+  display: none;
 }
+
+/* Stil samog "dugmeta" */
+.category-checkbox {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  background: #f0f0f0;
+  color: #333;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Hover efekat */
+.category-checkbox:hover {
+  background: #e6e6e6;
+}
+
+
+
+
 
 /* Odabrane kategorije tagovi */
 .selected-categories {
@@ -175,7 +195,7 @@ button[type="button"]:hover {
 }
 
 .category-tag {
-  background: linear-gradient(135deg, #4CAF50, #81C784);
+  background: #27ae60;
   color: white;
   padding: 6px 12px;
   border-radius: 20px;

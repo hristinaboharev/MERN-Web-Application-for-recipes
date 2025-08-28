@@ -16,6 +16,8 @@ import Pagination from "@mui/material/Pagination";
 import { SavedContext } from "../components/SavedContext";
 import RecipeCard from "../components/RecipeCard";
 import { PrevArrow, NextArrow } from "../components/CustomArrows";
+import Chatbot from "../components/Chatbot";
+
 
 const Recepti = () => {
   const { kategorija } = useParams();
@@ -129,6 +131,7 @@ const Recepti = () => {
           </p>
         )}
       </div>
+      <Chatbot />
     </div>
   );
 };

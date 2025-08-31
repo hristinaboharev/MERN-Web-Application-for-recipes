@@ -1,51 +1,42 @@
-import React from 'react';
+import React from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-export const PrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        left: '-40px',
-        zIndex: 1,
-        width: '30px',
-        height: '30px',
-        background: 'rgba(0,0,0,0.5)',
-        borderRadius: '50%',
-        cursor: 'pointer',
-      }}
-      onClick={onClick}
-    >
-      ‹
-    </div>
-  );
+const arrowStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 2,
+  width: "40px",
+  height: "40px",
+  background: "rgba(0,0,0,0.5)",
+  color: "#fff",
+  fontSize: "20px",
+  borderRadius: "50%",
+  cursor: "pointer",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+  transition: "all 0.3s ease",
 };
 
-export const NextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        right: '-40px',
-        zIndex: 1,
-        width: '30px',
-        height: '30px',
-        background: 'rgba(0,0,0,0.5)',
-        borderRadius: '50%',
-        cursor: 'pointer',
-      }}
-      onClick={onClick}
-    >
-      ›
-    </div>
-  );
-};
+export const PrevArrow = ({ className, style, onClick }) => (
+  <div
+    className={className}
+    style={{ ...style, ...arrowStyle, left: "-25px" }}
+    onClick={onClick}
+    onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.8)")}
+    onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.5)")}
+  >
+    <FaChevronLeft />
+  </div>
+);
+
+export const NextArrow = ({ className, style, onClick }) => (
+  <div
+    className={className}
+    style={{ ...style, ...arrowStyle, right: "-25px" }}
+    onClick={onClick}
+    onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.8)")}
+    onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.5)")}
+  >
+    <FaChevronRight />
+  </div>
+);

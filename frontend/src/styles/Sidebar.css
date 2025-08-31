@@ -18,6 +18,9 @@
 
 /* --- Sidebar --- */
 .sidebar {
+
+  border-right: 1px solid #e3d2f3; /* <<< dodaj ovo */
+
   position: fixed;
   top: 0;
   left: 0;
@@ -158,7 +161,6 @@
   font-weight: 600;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .user-info.dropdown:hover .dropdown-content {
   display: flex;
 }
@@ -195,3 +197,4 @@
   background-color: var(--hover-text);
   color: #124E66;
 }
+

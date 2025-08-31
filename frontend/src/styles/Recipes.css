@@ -305,3 +305,61 @@
   z-index: 3;
   border-radius: 12px;
 }
+
+
+
+
+.horizontal-scroll-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+}
+
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.horizontal-scroll .recipe-card{
+  flex: 0 0 calc(33.33% - 10.66px); /* 3 po redu, minus gap */
+
+  box-sizing: border-box;
+}
+.scroll-btn:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.scroll-btn.left {
+  left: -33px; /* pomeri strelicu van leve ivice */
+}
+
+.scroll-btn.right {
+  right: -33px; /* pomeri strelicu van desne ivice */
+}
+

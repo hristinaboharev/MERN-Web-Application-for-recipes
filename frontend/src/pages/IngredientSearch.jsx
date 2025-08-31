@@ -28,14 +28,8 @@ const Namirnice = () => {
   };
 
   return (
-    <div className="namirnice-container" style={{
-      backgroundImage: "url('/images/background.jpg')",
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      minHeight: '100vh',
-    }}>
-      <h2>Koje namirnice imaš?</h2>
+    <div className="namirnice-container">
+      <h2 className='ReceptiNaslov1'>Koje namirnice imaš?</h2>
       <div className="namirnice-input-group">
         <input
           type="text"
@@ -44,7 +38,7 @@ const Namirnice = () => {
           placeholder="Unesi npr. banana"
           className="form-control"
         />
-        <button className="btn dugme-plavo" onClick={handlePretraga}>
+        <button className="btn dugme" onClick={handlePretraga}>
           Pronađi
         </button>
       </div>

@@ -1,12 +1,30 @@
-/* Generalni stil sidebar-a */
+/* --- Tematske varijable za light i dark mode --- */
+:root[data-theme="light"] {
+  --sidebar-bg: #ebd9fc;
+  --sidebar-text: #333333;
+  --submenu-bg: #d4c1f9;
+  /* --hover-text: #ffffff; */
+  /* --hover-bg: #748d92; */
+
+}
+
+:root[data-theme="dark"] {
+  --sidebar-bg: #2e3944;
+  --sidebar-text: #d3d9d4;
+  --submenu-bg: #3a4754;
+  --hover-text: #ffffff;
+  /* --hover-bg: rgba(255, 255, 255, 0.1); */
+}
+
+/* --- Sidebar --- */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   width: 18vw;
   height: 100vh;
-  background-color: var(--sidebar-bg, #748D92);
-  color: var(--text-color, white);
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
   box-sizing: border-box;
   font-weight: 600;
   font-size: 1.1rem;
@@ -15,23 +33,23 @@
   padding: 20px;
   overflow-y: auto;
   z-index: 1000;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Logo na vrhu */
 .logo {
   font-size: 3rem;
   font-weight: 700;
-  /* color: var(--text-color, white); */
   font-family: 'Dancing Script', cursive;
   user-select: none;
   margin-bottom: 1rem;
+  color: var(--sidebar-text);
 }
 
 /* Dugme za promenu teme */
 .theme-toggle {
   background: transparent;
-  border: none; /* bez bordera */
+  border: none;
   cursor: pointer;
   font-size: 1.5rem;
   padding: 6px 10px;
@@ -39,24 +57,20 @@
   align-items: center;
   justify-content: center;
   transition: color 0.3s ease;
-  color: inherit; /* boja zavisi od teme na body/html */
+  color: inherit;
 }
 
-/* Kad je tema light, prikazujemo mesec u tamnoj boji */
 [data-theme="light"] .theme-toggle {
-  color: #333333; /* tamna siva za mesec */
+  color: #333333;
 }
 
-/* Kad je tema dark, prikazujemo sunce u žutoj/svetloj boji */
 [data-theme="dark"] .theme-toggle {
-  color: #FFD700; /* zlatno žuta za sunce */
+  color: #FFD700;
 }
 
-/* Opcionalno, hover efekat */
 .theme-toggle:hover {
   opacity: 0.8;
 }
-
 
 /* Lista linkova */
 .sidebar-nav ul {
@@ -73,7 +87,7 @@
 /* Glavni linkovi */
 .sidebar-nav a,
 .parent-link {
-  color: var(--text-color, white);
+  color: var(--sidebar-text);
   text-decoration: none;
   display: block;
   padding: 8px 14px;
@@ -81,58 +95,41 @@
   font-weight: 700;
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Svetliji hover */
-.sidebar-nav a:hover,
-.parent-link:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: var(--text-color, white);
-}
 
-/* Podmeni - sakriven po defaultu, sa animacijom */
+
+/* Podmeni */
 .submenu {
   max-height: 0;
   overflow: hidden;
   list-style: none;
   padding-left: 15px;
   margin-top: 0.4rem;
-  background-color: var(--sidebar-bg, #748D92);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  transition: max-height 0.4s ease-in-out;
+  transition: max-height 0.4s ease-in-out, background-color 0.3s ease;
 }
 
 .has-submenu:hover > .submenu {
   max-height: 300px;
 }
 
-/* Stavke u podmeniju */
 .submenu li {
   margin-bottom: 0.5rem;
 }
 
-/* Linkovi u podmeniju */
 .submenu li a {
   padding: 6px 20px;
   display: block;
-  color: var(--text-color, white);
   font-weight: 500;
   border-radius: 6px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: transparent;
 }
 
-.submenu li a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* .user-info {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* razmak između avatara i korisničkog imena */
-
-/* Omotač za korisnički deo sa dropdown-om */
+/* Dropdown korisnika */
 .user-info.dropdown {
   position: relative;
   display: flex;
@@ -140,13 +137,11 @@
   gap: 8px;
 }
 
-/* Dropdown meni sakriven po default-u */
 .user-info.dropdown .dropdown-content {
   display: none;
   position: absolute;
-  bottom: 38px; /* iznad korisničkog dela */
+  bottom: 38px;
   left: 0;
-  background-color: var(--sidebar-bg, #748D92);
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
   padding: 0.5rem 0;
@@ -155,25 +150,18 @@
   flex-direction: column;
 }
 
-/* Linkovi u dropdown meniju */
 .user-info.dropdown .dropdown-content a {
-  color: var(--text-color, white);
+  color: var(--sidebar-text);
   padding: 8px 80px 8px 12px;
   text-decoration: none;
   display: block;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.user-info.dropdown .dropdown-content a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Prikaz dropdown menija na hover */
 .user-info.dropdown:hover .dropdown-content {
   display: flex;
 }
-
 
 /* Sekcija za login/logout na dnu */
 .auth-links {
@@ -187,26 +175,23 @@
 
 .auth-links a,
 .auth-links button {
-  /* color: white; */
   background: transparent;
-  /* border: 1.5px solid white; */
   border-radius: 8px;
   padding: 8px 15px;
   font-weight: 600;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  /* transition: background-color 0.3s ease; */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--sidebar-text);
 }
 
-
-/* Logout dugme */
 .logout-btn {
   background-color: transparent;
-  border: 1.5px solid white;
+  border: 1.5px solid var(--sidebar-text);
 }
 
 .logout-btn:hover {
-  background-color: white;
+  background-color: var(--hover-text);
   color: #124E66;
 }

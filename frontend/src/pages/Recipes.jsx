@@ -8,7 +8,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
 import Pagination from "@mui/material/Pagination";
 
 
@@ -73,7 +72,7 @@ const Recepti = () => {
   return (
     <div className="containerRecipe">
       {/* Header sa pozadinom */}
-      <div
+      {/* <div
         className="header-container"
         style={{ backgroundImage: `url(/images/pozadina.jpg)` }}
       >
@@ -86,10 +85,10 @@ const Recepti = () => {
           alt="Hrana"
           className="food-overlay"
         />
-      </div>
+      </div> */}
 
       {/* Grid sa receptima */}
-      <h2>Svi recepti</h2>
+      <h2 className="ReceptiNaslov" >Svi recepti</h2>
       <div className="recipe-grid">
         {currentRecepti.length > 0 ? (
           currentRecepti.map((recept) => (
@@ -107,18 +106,20 @@ const Recepti = () => {
           page={currentPage}
           onChange={(event, page) => setCurrentPage(page)}
           variant="outlined"
-          color="primary"
           showFirstButton
           showLastButton
-          sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}
+          className="my-pagination"
         />
       )}
 
       {/* Slider najnovijih recepata */}
       <div style={{ marginTop: 40 }}>
-        <Divider className="custom-divider">
-          <Chip label="Najnoviji recepti" />
-        </Divider>
+
+
+        <Divider sx={{ my: 2 }} />
+        <h3 className="ReceptiNaslov">Najnoviji recepti</h3>  
+        
+        
         {najnovijiRecepti.length > 0 ? (
           <Slider {...sliderSettings}>
             {najnovijiRecepti.map((recept) => (

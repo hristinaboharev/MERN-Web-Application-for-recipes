@@ -1,50 +1,85 @@
+/* --- Container --- */
 .auth-container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 30px;
-  border-radius: 12px;
-  background-color: var(--bg);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  color: var(--text);
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  border-radius: 16px;
+  background-color: #f7f7f7;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  color: #212a31;
+  font-family: 'Inter', sans-serif;
   transition: all 0.3s ease-in-out;
 }
 
+/* --- Naslov --- */
 .auth-container h2 {
   text-align: center;
-  margin-bottom: 20px;
-  color: var(--accent);
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #748d92;
 }
 
-.auth-container input,
-.auth-container button {
-  width: 100%;
-  padding: 12px;
+/* --- Poruke uspeha/greške --- */
+.auth-message {
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 10px;
   border-radius: 8px;
+  font-weight: 600;
+}
+
+.auth-message.success {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+}
+
+.auth-message.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
+/* --- Form labeli --- */
+.auth-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+/* --- Input polja --- */
+.auth-container input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
   font-size: 16px;
   box-sizing: border-box;
+  transition: border 0.3s, box-shadow 0.3s;
 }
 
-.auth-container input {
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  background-color: var(--input-bg);
-  color: var(--text);
+.auth-container input:focus {
+  border-color: #748d92;
+  box-shadow: 0 0 8px rgba(116, 141, 146, 0.5);
+  outline: none;
 }
 
+/* --- Dugme --- */
 .auth-container button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
   border: none;
   cursor: pointer;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  transition: background 0.3s;
+  background:  #748d92;
+  color: #ffffff;
+  transition: all 0.3s ease;
 }
 
-.auth-container button:hover {
-  background-color: var(--button-hover-bg);
-  color: var(--button-hover-text);
-}
-
-
+/* --- Theme toggle (opciono) --- */
 .theme-toggle {
   position: fixed;
   top: 10px;
@@ -53,11 +88,12 @@
   cursor: pointer;
   border-radius: 8px;
   border: none;
-  background: var(--accent);
-  color: white;
+  background: #748d92;
+  color: #ffffff;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
 }
 
-.auth-container button {
-  background-color: var(--button-bg);
-  color: var(--button-text);
+.theme-toggle:hover {
+  opacity: 0.8;
 }

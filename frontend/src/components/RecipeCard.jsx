@@ -14,7 +14,7 @@ const RecipeCard = ({ recept }) => {
   const datumFormatirano = datum ? datum.toLocaleDateString("sr-RS") : "";
 
   return (
-    <div className="recipe-card">
+    <Link to={`/recepti/${recept._id}`} className="recipe-card">
       {imageUrl ? (
         <img src={imageUrl} alt={recept.naziv} className="card-img" />
       ) : (
@@ -23,7 +23,6 @@ const RecipeCard = ({ recept }) => {
       <div className="card-content">
         <h4>{recept.naziv}</h4>
 
-        {/* Dodajemo prikaz kategorija */}
         {recept.kategorija && recept.kategorija.length > 0 && (
           <p className="categories">
             <strong>Kategorija:</strong>{" "}
@@ -32,7 +31,10 @@ const RecipeCard = ({ recept }) => {
         )}
 
         <button
-          onClick={() => toggleSave(recept._id)}
+          onClick={(e) => {
+            e.preventDefault(); // Sprečava navigaciju kada se klikne na dugme
+            toggleSave(recept._id);
+          }}
           className="save-heart-btn"
         >
           {saved.includes(recept._id) ? (
@@ -44,19 +46,16 @@ const RecipeCard = ({ recept }) => {
 
         {recept.vreme && (
           <p>
-            <strong>⏱ Vreme:</strong> {recept.vreme}
+            <strong>Vreme:</strong> {recept.vreme}
           </p>
         )}
         {datum && (
           <p>
-            <strong>📅 Datum:</strong> {datumFormatirano}
+            <strong>Datum:</strong> {datumFormatirano}
           </p>
         )}
-        <Link to={`/recepti/${recept._id}`} className="show-more-btn">
-          Prikaži više
-        </Link>
       </div>
-    </div>
+    </Link>
   );
 };
 

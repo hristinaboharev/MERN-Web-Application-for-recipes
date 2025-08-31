@@ -69,6 +69,7 @@
 
 .input-area input {
   flex: 1;
+  margin: 0px !important;
   padding: 8px;
   border: none;
   outline: none;
@@ -78,6 +79,7 @@
   background: #4cafef;
   color: white;
   border: none;
+  /* border-radius: 5%; */
   padding: 8px 12px;
   cursor: pointer;
 }

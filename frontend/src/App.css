@@ -1,52 +1,32 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
-  padding: 0;
 }
 
 /* --- Tematske varijable --- */
-:root[data-theme='light'] {
+:root[data-theme="light"] {
   --bg: #f7f7f7;
-  --text: #212A31;
-  --nav-bg: #748D92;
-  --link: #124E66;
-  --border: #2E3944;
-  --sidebar-bg: #748D92;
-  --button-bg: #124E66;
-  --button-text: #ffffff;
-  --button-hover-bg: #2E3944;
-  --button-hover-text: #ffffff;
+  --text: #212a31;
+  --nav-bg: #748d92;
+  --link: #73877b;
+  --sidebar-bg: #ebd9fc;
+  --button-bg: #124e66;
+  --button-text: #444444;
 }
 
-:root[data-theme='dark'] {
-  --bg: #212A31;
-  --text: #D3D9D4;
-  --nav-bg: #2E3944;
-  --link: #66b2ff;
+:root[data-theme="dark"] {
+  --bg: #212a31;
+  --text: #d3d9d4;
+  --nav-bg: #2e3944;
+  --link: #73877b;
   --border: #444;
-  --sidebar-bg: #2E3944;
-  --button-bg: #748D92;
+  --sidebar-bg: #2e3944;
+  --button-bg: #748d92;
   --button-text: #ffffff;
-  --button-hover-bg: #124E66;
   --button-hover-text: #ffffff;
-
-  
 }
-
 
 /* --- Globalni stilovi --- */
 body {
@@ -54,9 +34,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-variation-settings:
-    "slnt" 0,
-    "wdth" 100;
+  font-variation-settings: "slnt" 0, "wdth" 100;
   background-color: var(--bg);
   color: var(--text);
   /* transition: background-color 0.3s ease, color 0.3s ease; */
@@ -78,7 +56,6 @@ body {
   color: var(--button-hover-text);
 }
 
-
 .sidebar a {
   color: var(--button-text);
   text-decoration: none;
@@ -91,18 +68,18 @@ body {
   animation-delay: calc(var(--i) * 0.1s);
 }
 
-.sidebar a:nth-child(1) { --i: 1; }
-.sidebar a:nth-child(2) { --i: 2; }
+.sidebar a:nth-child(1) {
+  --i: 1;
+}
+.sidebar a:nth-child(2) {
+  --i: 2;
+}
 
 .sidebar a:hover {
   background-color: var(--button-hover-bg);
   color: var(--button-hover-text);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-
-
-
-
 
 @keyframes slideIn {
   to {
@@ -114,23 +91,29 @@ body {
 .main-content {
   margin-left: 18vw; /* Isto koliko i sidebar */
   /* padding: 30px 40px; */
+  padding-bottom: 0px;
   background-color: var(--bg);
   color: var(--text);
   transition: all 0.3s ease;
   height: auto;
 }
 
-
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin-top: 0;
   font-weight: 700;
 }
 
-input, button {
+input,
+button {
   font-family: inherit;
 }
 
-input[type="text"], input[type="search"] {
+input[type="text"],
+input[type="search"] {
   border: 1.8px solid var(--border);
   border-radius: 12px;
   padding: 8px 14px;
@@ -140,7 +123,8 @@ input[type="text"], input[type="search"] {
   transition: border-color 0.3s ease;
 }
 
-input[type="text"]:focus, input[type="search"]:focus {
+input[type="text"]:focus,
+input[type="search"]:focus {
   border-color: var(--button-bg);
   outline: none;
   box-shadow: 0 0 5px var(--button-bg);
@@ -165,12 +149,11 @@ input[type="text"]:focus, input[type="search"]:focus {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-
 /* naslov aplikacije */
 header h1 {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-weight: 700;
-  font-size: 3rem; 
+  font-size: 3rem;
   color: var(--text);
   margin: 0;
 }

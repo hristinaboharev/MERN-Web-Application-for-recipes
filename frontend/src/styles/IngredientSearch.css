@@ -1,176 +1,153 @@
-
+/* --- Container --- */
 .namirnice-container {
-  /* max-width: 700px; */
+  max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px 20px;
+  color: #212a31;
 }
+
+/* --- Naslov --- */
+.ReceptiNaslov1 {
+  font-family: 'Caveat', cursive;
+  font-size: 42px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* --- Input i dugme grupa --- */
 .namirnice-input-group {
-
-  width: 34%;
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 12px;
+  margin: 0 auto 30px;
+  max-width: 400px;
 }
 
+/* --- Input --- */
 .form-control {
   flex-grow: 1;
-  padding: 10px 14px;
-  font-size: 1rem;
-  border: 1.8px solid var(--border);
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1.5px solid #ccc;
   border-radius: 12px;
-  color: var(--text);
-  background-color: var(--bg);
-  transition: border-color 0.3s ease;
+  background-color: #ffffff;
+  color: #212a31;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+
+  height: 44px;
 }
 
 .form-control:focus {
-  border-color: var(--button-bg);
+  border-color: #748d92;
+  box-shadow: 0 0 8px rgba(116,141,146,0.4);
   outline: none;
-  box-shadow: 0 0 6px var(--button-bg);
 }
 
-.btn {
-  cursor: pointer;
-  padding: 10px 22px;
-  border-radius: 20px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* --- Dugme --- */
+.btn.dugme {
+
+  height: 44px;
+
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
   border: none;
+  cursor: pointer;
+  background:  #748d92;
+  color: #ffffff;
+  transition: all 0.3s ease;
 }
 
-.dugme-plavo {
-  background-color: var(--button-bg);
-  color: var(--button-text);
+.btn.dugme:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.dugme-plavo:hover {
-  background-color: var(--button-hover-bg);
-  color: var(--button-hover-text);
-}
-
-/* Kartica recepta */
+/* --- Kartice recepta --- */
 .rezultat-kartica {
-
-  text-decoration: none;
   display: flex;
   gap: 20px;
-  background-color: var(--bg);
-  color: var(--text);
-
+  background-color: #ffffff;
   border-radius: 16px;
-  padding: 15px 20px;
+  padding: 16px 20px;
   margin-top: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: #212a31;
   align-items: center;
-  transition: box-shadow 0.3s ease;
-  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .rezultat-kartica:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
+/* --- Slika recepta --- */
 .kartica-slika {
   width: 140px;
   height: 100px;
-  object-fit: cover;
   border-radius: 12px;
+  object-fit: cover;
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 .kartica-slika-placeholder {
   width: 140px;
   height: 100px;
-  background-color: var(--border);
   border-radius: 12px;
+  background-color: #dcdcdc;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--button-text);
+  color: #748d92;
   font-weight: 600;
   flex-shrink: 0;
   font-size: 0.9rem;
 }
 
+/* --- Sadržaj kartice --- */
 .kartica-sadrzaj {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  
+  flex-grow: 1;
 }
 
 .kartica-sadrzaj h5 {
   margin: 0 0 8px 0;
-  color: var(--text);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .kartica-sadrzaj p {
-  margin: 0 0 12px 0;
-  color: var(--text);
+  margin: 0;
   font-size: 0.95rem;
-  line-height: 1.3;
+  line-height: 1.4;
+  color: #444444;
 }
 
-/* Dugme Prikaži više */
-
-
+/* --- Dugme Prikaži više --- */
 .prikazi-vise-btn {
-  background-color: transparent;
-  border: 2px solid var(--button-bg);
-  color: var(--button-bg);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
   display: inline-block;
   margin-top: 12px;
-
-align-self: flex-end; /* pomera na desnu stranu u flex kontejneru */
-  margin-top: auto; /* guranje na dno sadržaja */
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid #748d92;
+  color: #748d92;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .prikazi-vise-btn:hover {
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  box-shadow: 0 0 10px var(--button-bg);
+  background-color: #748d92;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transform: scale(1.05);
 }
 
-
-/* css za favorites srce */
-.prikazi-vise-btn.ukloni {
-  background: none;
-  border: none;
-  padding: 6px;
-  cursor: pointer;
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* Ikonica srca unutar dugmeta – uvek crvena */
-.prikazi-vise-btn.ukloni svg {
-  color: #e74c3c !important;
-}
-
-/* Bez efekta na hover, klik itd. */
-.prikazi-vise-btn.ukloni:hover,
-.prikazi-vise-btn.ukloni:focus,
-.prikazi-vise-btn.ukloni:active {
-  outline: none !important;
-  box-shadow: none !important;
-  border: none !important;
-  background: none;
-}
-
-
-
-/*  */

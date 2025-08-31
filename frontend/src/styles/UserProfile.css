@@ -47,6 +47,7 @@
 
 .delete-mode-toggle button {
   background: #e74c3c;
+  margin: 10px 0;
   color: white;
   border: none;
   padding: 6px 12px;

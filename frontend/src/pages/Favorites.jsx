@@ -22,7 +22,7 @@ const Favorites = () => {
 
   return (
     <div className="namirnice-container">
-      <h2>Sačuvani recepti</h2>
+      <h2 className="ReceptiNaslov" >Sačuvani recepti</h2>
       {recepti.length > 0 ? (
         recepti.map((recept) => <FavoriteCard key={recept._id} recept={recept} />)
       ) : (

@@ -1,13 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { SavedContext } from "./SavedContext";
 import useImage from "../hooks/useImage";
 
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const RecipeCard = ({ recept }) => {
-  const { saved, toggleSave } = useContext(SavedContext);
   const imageUrl = useImage(recept.slika);
 
   const datum = recept.createdAt ? new Date(recept.createdAt) : null;
@@ -30,19 +26,6 @@ const RecipeCard = ({ recept }) => {
           </p>
         )}
 
-        <button
-          onClick={(e) => {
-            e.preventDefault(); // Sprečava navigaciju kada se klikne na dugme
-            toggleSave(recept._id);
-          }}
-          className="save-heart-btn"
-        >
-          {saved.includes(recept._id) ? (
-            <FavoriteIcon style={{ color: "red" }} />
-          ) : (
-            <FavoriteBorderIcon />
-          )}
-        </button>
 
         {recept.vreme && (
           <p>

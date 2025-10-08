@@ -30,11 +30,17 @@ body,
 
 /* --- Globalni stilovi --- */
 body {
-  font-family: "TikTok Sans", sans-serif;
+  /* font-family: "TikTok Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-variation-settings: "slnt" 0, "wdth" 100;
+  font-variation-settings: "slnt" 0, "wdth" 100; */
+
+
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
   background-color: var(--bg);
   color: var(--text);
   /* transition: background-color 0.3s ease, color 0.3s ease; */

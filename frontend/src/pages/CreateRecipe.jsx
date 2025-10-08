@@ -12,6 +12,8 @@ const CreateRecipe = () => {
   const [priprema, setPriprema] = useState(['']);
   const [kategorije, setKategorije] = useState([]);
   const [odabraneKategorije, setOdabraneKategorije] = useState([]);
+  const [vreme, setVreme] = useState('');
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -52,6 +54,7 @@ const CreateRecipe = () => {
       formData.append('naziv', naslov);
       formData.append('sastojci', JSON.stringify(sastojci.filter(s => s.trim() !== '')));
       formData.append('priprema', JSON.stringify(priprema.filter(p => p.trim() !== '')));
+      formData.append('vreme', vreme);
       formData.append('kategorija', JSON.stringify(odabraneKategorije));
       if (slika) formData.append('slika', slika);
 
@@ -68,7 +71,10 @@ const CreateRecipe = () => {
       setSlika(null);
       setSastojci(['']);
       setPriprema(['']);
+      setVreme(['']);
       setOdabraneKategorije([]);
+      
+
     } catch (err) {
       console.error(err);
       alert(err.response?.data?.message || 'Greška pri slanju recepta');
@@ -122,6 +128,13 @@ const CreateRecipe = () => {
         </div>
 
         <div className="right-column">
+
+
+          <label>Vreme pripreme</label>
+          <input type="text" placeholder="npr. 30 min" value={vreme} onChange={e => setVreme(e.target.value)} required />
+
+          <Divider sx={{ my: 2 }} />  
+
           <label>Kategorije</label>
           <div className="categories-checkbox">
             {kategorije.map(k => (

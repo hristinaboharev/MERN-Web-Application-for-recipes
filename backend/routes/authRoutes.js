@@ -41,21 +41,31 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    //tražimo korisnika u bazi po email adresi
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: 'Neispravan email ili lozinka' });
+    //Ako korisnik ne postoji vrati grešku
+    if (!user) 
+      return res.status(400).json({ message: 'Neispravan email ili lozinka' });
 
+    //Poređenje lozinke sa hashovanom lozinkom u bazi
     const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) return res.status(400).json({ message: 'Neispravan email ili lozinka' });
 
+    //Ako lozinka nije tačna, vrati grešku
+    if (!passwordMatch)
+       return res.status(400).json({ message: 'Neispravan email ili lozinka' });
+
+     //Ako su kredencijali ispravni, generišemo JWT token
     const token = jwt.sign(
+      //Podaci koji se smeštaju u token
       { id: user._id, username: user.username, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: '1d' }
+      process.env.JWT_SECRET, //ovo je tajni ključ za potpisivanje tokena
+      { expiresIn: '1d' } //trajanje tokena na 1 dan
     );
 
+    //Vraćamo token kao odgovor klijentu
     res.json({ token });
   } catch (error) {
-    console.error('Greška pri login-u:', error); // ovo doda
+    console.error('Greška pri login-u:', error); a
     res.status(500).json({ message: 'Greška na serveru' });
   }
 });

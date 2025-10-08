@@ -4,15 +4,25 @@ import axios from 'axios';
 import '../styles/RecipeDetails.css';
 import useImage from '../hooks/useImage';
 
-import { CgProfile } from "react-icons/cg";
+import { useContext } from "react";
+import { SavedContext } from "../components/SavedContext";
+
+
+// import { CgProfile } from "react-icons/cg";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Divider from '@mui/material/Divider';
+
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ReceptDetalji = () => {
   const { id } = useParams();
   const [recept, setRecept] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const { saved, toggleSave } = useContext(SavedContext);
+
 
   // Poziv hook-a NA VRHU, bez obzira da li je recept učitan
   const imageUrl = useImage(recept ? recept.slika : null);
@@ -31,7 +41,7 @@ const ReceptDetalji = () => {
   if (error) return <p className="text-center mt-5 text-danger">Greška pri učitavanju recepta.</p>;
   if (!recept) return <p className="text-center mt-5">Recept nije pronađen.</p>;
 
-  // Ako je priprema string sa novim redovima, podeli na niz
+  // Ako je priprema string novim redovima, podeli na niz
   const pripremaNiz =
     typeof recept.priprema === 'string'
       ? recept.priprema.split('\n').filter(line => line.trim() !== '')
@@ -50,7 +60,7 @@ const ReceptDetalji = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="recept-naslov">{recept.naziv}</h2>
+      <h2 className="ReceptiNaslov">{recept.naziv}</h2>
 
       <div className="meta-info">
         <p>Datum kreiranja: {formatDatum(recept.createdAt)}</p>
@@ -64,6 +74,20 @@ const ReceptDetalji = () => {
         ) : (
           <p>Autor: Nepoznat</p>
         )}
+      </div>
+
+
+      <div className="ee-row">
+        <button
+          onClick={() => toggleSave(recept._id)}
+          className="save-heart-btn"
+        >
+          {saved.includes(recept._id) ? (
+            <FavoriteIcon style={{ color: "red" }} />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
+        </button>
       </div>
 
       <Divider sx={{ my: 2 }} />  

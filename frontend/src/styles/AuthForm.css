@@ -7,7 +7,7 @@
   background-color: #f7f7f7;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
   color: #212a31;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   transition: all 0.3s ease-in-out;
 }
 
@@ -74,7 +74,7 @@
   font-weight: 700;
   border: none;
   cursor: pointer;
-  background:  #748d92;
+  background: #748d92;
   color: #ffffff;
   transition: all 0.3s ease;
 }
@@ -96,4 +96,11 @@
 
 .theme-toggle:hover {
   opacity: 0.8;
+}
+
+/* */
+.auth-input1 {
+  border: none;
+  padding: none;
+  background-color: none;
 }

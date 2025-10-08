@@ -37,6 +37,7 @@ const Login = ({ onLogin }) => {
           <div className="auth-message error">{errorMessage}</div>
         )}
 
+        {/* Forma za login */}
         <form className="auth-form" onSubmit={handleSubmit}>
           <label>Email</label>
           <input

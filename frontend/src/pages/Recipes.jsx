@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../styles/Recipes.css";
 
 import Divider from "@mui/material/Divider";
@@ -19,6 +19,10 @@ const Recepti = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
+  // Pretraga
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
   // Fetch recepata iz backend-a
   useEffect(() => {
     let url = "http://localhost:5000/api/recepti";
@@ -29,6 +33,19 @@ const Recepti = () => {
       .then((res) => setRecepti(res.data))
       .catch((err) => console.error(err));
   }, [kategorija]);
+
+  // Pretraga recepata po nazivu
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFilteredResults([]);
+      return;
+    }
+
+    const results = recepti.filter((recept) =>
+      recept.naziv.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredResults(results);
+  }, [searchTerm, recepti]);
 
   // Najnoviji recepti u poslednjih 10 dana
   const danas = new Date();
@@ -58,13 +75,29 @@ const Recepti = () => {
     }
   };
 
+  // Koji recepti da se prikazu u gridu
+  const prikazaniRecepti = searchTerm ? filteredResults : currentRecepti;
+
   return (
     <div className="containerRecipe">
-      {/* Grid sa receptima */}
+      {/* Naslov */}
       <h2 className="ReceptiNaslov">Svi recepti</h2>
+
+      {/* Search bar desno ispod naslova */}
+      <div className="search-inline-container">
+        <input
+          type="text"
+          placeholder="Pretraži recepte..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input-inline"
+        />
+      </div>
+
+      {/* Grid sa receptima */}
       <div className="recipe-grid">
-        {currentRecepti.length > 0 ? (
-          currentRecepti.map((recept) => (
+        {prikazaniRecepti.length > 0 ? (
+          prikazaniRecepti.map((recept) => (
             <RecipeCard key={recept._id} recept={recept} />
           ))
         ) : (
@@ -73,7 +106,7 @@ const Recepti = () => {
       </div>
 
       {/* Paginacija */}
-      {totalPages > 1 && (
+      {!searchTerm && totalPages > 1 && (
         <Pagination
           count={totalPages}
           page={currentPage}
@@ -105,7 +138,9 @@ const Recepti = () => {
             </button>
           </div>
         ) : (
-          <p className="text-center">Nema recepata kreiranih u poslednjih 10 dana.</p>
+          <p className="text-center">
+            Nema recepata kreiranih u poslednjih 10 dana.
+          </p>
         )}
       </div>
 

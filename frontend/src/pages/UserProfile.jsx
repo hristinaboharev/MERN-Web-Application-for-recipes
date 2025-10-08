@@ -94,7 +94,7 @@ const UserProfile = () => {
                 <div className="recipe-name">{recept.naziv}</div>
               </Link>
 
-              {/* Dugme za brisanje vidi samo vlasnik */}
+              {/* Dugme za brisanje koje vidi samo vlasnik */}
               {deleteMode && currentUser?.id === userId && (
                 <button className="delete-btn" onClick={() => handleDelete(recept._id)}>
                   <DeleteIcon fontSize="small" />

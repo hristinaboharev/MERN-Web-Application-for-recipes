@@ -8,6 +8,7 @@ const ReceptiKategorija = () => {
   const { kategorija } = useParams();
   const [recepti, setRecepti] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(''); // za pretragu
 
   useEffect(() => {
     const fetchRecepti = async () => {
@@ -25,20 +26,39 @@ const ReceptiKategorija = () => {
     fetchRecepti();
   }, [kategorija]);
 
+  // filtrirani recepti po searchTerm
+  const filtriraniRecepti = recepti.filter(r =>
+    r.naziv.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="container py-4">
-      <h2>Kategorija: {kategorija}</h2>
+      <h2 className="ReceptiNaslov">Kategorija: {kategorija}</h2>
+
+      {/* Search input centriran */}
+      <div className="search-container">
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Pretraži recepte po nazivu..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+      </div>
+
 
       {loading ? (
         <div className="loading-spinner"></div>
-      ) : recepti.length > 0 ? (
+      ) : filtriraniRecepti.length > 0 ? (
         <div className="recipe-grid">
-          {recepti.map(recept => (
+          {filtriraniRecepti.map(recept => (
             <RecipeCard key={recept._id} recept={recept} />
           ))}
         </div>
       ) : (
-        <p>Nema recepata u ovoj kategoriji.</p>
+        <p>Nema recepata koji odgovaraju pretrazi.</p>
       )}
     </div>
   );

@@ -40,34 +40,20 @@ const Signup = () => {
         )}
 
         <form className="auth-form" onSubmit={handleSignup}>
+
           <label>Korisničko ime</label>
-          <input
-            type="text"
-            className="auth-input"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            placeholder="Unesi korisničko ime"
+          <input type="text" className="auth-input1" value={username} 
+          onChange={(e) => setUsername(e.target.value)} required placeholder="Unesi korisničko ime"
           />
 
           <label>Email</label>
-          <input
-            type="email"
-            className="auth-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="Unesi email"
+          <input type="email" className="auth-input" value={email} 
+          onChange={(e) => setEmail(e.target.value)} required placeholder="Unesi email"
           />
 
           <label>Lozinka</label>
-          <input
-            type="password"
-            className="auth-input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            placeholder="Unesi lozinku"
+          <input type="password" className="auth-input"value={password}
+            onChange={(e) => setPassword(e.target.value)} required placeholder="Unesi lozinku"
           />
 
           <button type="submit" className="auth-button">

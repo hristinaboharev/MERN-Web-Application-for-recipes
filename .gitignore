@@ -1,0 +1,32 @@
+# Backend .env
+backend/.env
+
+# Node modules
+node_modules/
+
+# Build / dist folders
+build/
+dist/
+
+# Env fajlovi (frontend)
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Editor dirs
+.vscode/
+.idea/
+
+# Mac sistemski fajlovi
+.DS_Store
+
+# Optional: test coverage
+coverage/
+node_modules
